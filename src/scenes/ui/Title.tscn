@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://themes/title.theme" type="Theme" id=1]
+
+[node name="Title" type="MarginContainer"]
+margin_right = 351.0
+margin_bottom = 78.0
+theme = ExtResource( 1 )
+custom_constants/margin_right = 4
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 347.0
+margin_bottom = 74.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer"]
+margin_left = 6.0
+margin_top = 6.0
+margin_right = 337.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "Game Title"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

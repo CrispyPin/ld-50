@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://themes/main.theme" type="Theme" id=1]
+
+[node name="Setting1" type="MarginContainer"]
+margin_right = 1016.0
+margin_bottom = 69.0
+theme = ExtResource( 1 )
+custom_constants/margin_right = 4
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 1012.0
+margin_bottom = 65.0
+toggle_mode = true
+text = "Toggle1"
+align = 0
