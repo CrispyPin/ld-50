@@ -9,11 +9,12 @@ var t: Dictionary
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	t = {
+		"debug": preload("res://textures/square.png").get_data(),
 		"tree_1": preload("res://textures/tree-01.png").get_data(),
 		"tree_2": preload("res://textures/tree-02.png").get_data(),
 	}
-	t["tree_1"].lock()
-	t["tree_2"].lock()
+	for key in t:
+		t[key].lock()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
