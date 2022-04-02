@@ -8,10 +8,13 @@ extends Node2D
 export (Texture) var texture
 export (Image) var image
 
-export var size = [100,100] # number of cells XY
+# number of cells XY
+export var size = [200,100] 
 
-# private plz
+# size of a single pixel XY
 var pixel_size = [0,0]
+
+# misleading
 var screen_size = [0,0]
 
 var image_changed = false
@@ -30,8 +33,8 @@ func _ready():
     
     self.screen_size = size
     
-    self.pixel_size[0] = self.screen_size[0]/self.size[0]
-    self.pixel_size[1] = self.screen_size[1]/self.size[1]
+    self.pixel_size[0] = 4
+    self.pixel_size[1] = 4
 
 
     image = Image.new()
@@ -94,6 +97,6 @@ func _set_texture(value):
     update()  # Update the node's visual representation.
 
 func _draw():
-    var rect = Rect2(0,0,400,400)
+    var rect = Rect2(0,0,size[0]*pixel_size[0],size[1]*pixel_size[1])
     draw_texture_rect ( texture, rect, false)
     #draw_texture(texture, Vector2())

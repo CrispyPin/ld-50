@@ -19,6 +19,10 @@ enum Id {
     KELP,
 }
 
+func kill(cells, x, y):
+    cells.set_cell_id(x,y,Id.AIR)
+
+
 func getId():
     return Id.AIR
 
@@ -27,13 +31,13 @@ func getId():
 #    pass # Replace with function body.
 
 func has_nearby(cells, x: int, y: int, id) -> bool:
-    for x in range(-1,2):
-        for y in range(-1,2):
-            if cells.get_cell(x,y).getId() == id:
+    for dx in range(-1,2):
+        for dy in range(-1,2):
+            if cells.get_cell(x+dx,y+dy).getId() == id:
                 return true
     return false
 
-func is_in_water(cells, x, y):
+func is_in_water(cells, x, y) -> bool:
     return has_nearby(cells, x, y, Id.WATER)
 
 func draw():

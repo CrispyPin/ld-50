@@ -22,7 +22,10 @@ func get_cell_id(x: int, y: int) -> int:
     else:
         print("Get cell id invalid coordinate", x, y)
         return Cell.Id.AIR
-    
+
+func kill(x: int, y: int):
+    get_cell(x,y).kill(self,x,y)
+
 func set_cell_id(x: int, y: int, id):
     set_cell(x,y,make_cell_from_id(id))
     
@@ -36,6 +39,8 @@ func make_cell_from_id(id) -> Cell:
         return SandCell.new()
     if id == Cell.Id.FISH:
         return FishCell.new()
+    if id == Cell.Id.KELP:
+        return KelpCell.new()
     else:
         if !id == Cell.Id.AIR:
             print("INVALID CELL ID REQUESTED:")
@@ -83,19 +88,23 @@ func _ready():
                 elif v<0.2:
                     cells[x].append(AirCell.new())
                 else:
-                    if r>0.95:
+                    if r>0.98:
                         cells[x].append(FishCell.new())
                     else:
                         cells[x].append(WaterCell.new())
             else:
                 cells[x].append(WallCell.new())
     
-    #set_cell(50,50,KelpCell.new())
+    set_cell(50,50,KelpCell.new())
+    set_cell(52,50,KelpCell.new())
+    set_cell(48,50,KelpCell.new())
     
     for y in range(draw.size[1]):         
         for x in range(draw.size[0]):
             _update_light(x,y)
-    
+func redraw(x: int, y: int):
+    _update_light(x,y)
+
 func _update_light(x: int, y: int):
     var id = get_cell_id(x,y)
     
