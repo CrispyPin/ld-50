@@ -83,12 +83,14 @@ func _ready():
                 elif v<0.2:
                     cells[x].append(AirCell.new())
                 else:
-                    cells[x].append(WaterCell.new())
+                    if r>0.95:
+                        cells[x].append(FishCell.new())
+                    else:
+                        cells[x].append(WaterCell.new())
             else:
                 cells[x].append(WallCell.new())
-                
-    for x in range(draw.size[0]):
-        for y in range(draw.size[1]):
+    for y in range(draw.size[1]):         
+        for x in range(draw.size[0]):
             _update_light(x,y)
     
 func _update_light(x: int, y: int):
@@ -99,8 +101,10 @@ func _update_light(x: int, y: int):
         light[x][y] = 1.0
     else:
         
+        var dx = 1
+        
         # cell above
-        var xp = x-1
+        var xp = x-dx
         var yp = y-1
         
         var idp = get_cell_id(xp,yp)
@@ -120,7 +124,7 @@ func _update_light(x: int, y: int):
         #    pass
         
         # cell below
-        _update_light(x+1,y+1)
+        _update_light(x+dx,y+1)
         _update_color(x, y)
         
         

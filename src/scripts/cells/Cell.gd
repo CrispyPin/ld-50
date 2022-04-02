@@ -11,7 +11,7 @@ extends Object
 class_name Cell
 
 enum Id {
-    AIR,
+    AIR = 0,
     WALL,
     WATER,
     SAND,
