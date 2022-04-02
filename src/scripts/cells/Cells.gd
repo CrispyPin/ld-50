@@ -99,9 +99,12 @@ func _ready():
             else:
                 cells[x].append(WallCell.new())
     
-    set_cell(50,50,KelpCell.new())
-    set_cell(52,50,KelpCell.new())
-    set_cell(48,50,KelpCell.new())
+    for x in range(20, 60, 2):
+        set_cell(x, 50, KelpCell.new())
+
+    set_cell(150,40,TreeCell.new())
+    set_cell(170,40,TreeCell.new())
+
     
     for x in range(draw.size[0]):
         _update_light(x,0)
