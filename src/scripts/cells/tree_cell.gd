@@ -5,7 +5,7 @@ class_name TreeCell
 
 var _col: Color
 
-const grow_offsets = [[-1, 0] , [0, -1], [1, 0]]#, [0, 1]]
+const grow_offsets = [[-1, 0] , [0, -1], [1, 0], [0, 1]]
 
 var tex_x = 0
 var tex_y = 0
@@ -30,7 +30,7 @@ func draw():
 func pixel(x, y):
 	return Textures.t.tree_1.get_pixel(tex_x, tex_y)
 
-func update(cells, x: int, y: int):
+func update(cells, _light, x: int, y: int):
 	pos_x = x
 	pos_y = y
 	if landed:
