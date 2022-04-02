@@ -11,12 +11,13 @@ extends Object
 class_name Cell
 
 enum Id {
-    AIR = 0,
+    AIR,
     WALL,
     WATER,
     SAND,
     FISH,
     KELP,
+    TREE,
 }
 
 func kill(cells, x, y):

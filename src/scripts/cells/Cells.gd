@@ -39,6 +39,8 @@ func make_cell_from_id(id) -> Cell:
         return SandCell.new()
     if id == Cell.Id.FISH:
         return FishCell.new()
+    if id == Cell.Id.TREE:
+        return TreeCell.new()
     if id == Cell.Id.KELP:
         return KelpCell.new()
     else:
