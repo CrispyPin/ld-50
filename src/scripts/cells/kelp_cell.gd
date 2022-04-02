@@ -26,23 +26,26 @@ func draw():
     return _col
  
 func update(cells, light, x: int, y: int):
-    if falling:
+    if true:
         var neighborCell = cells.get_cell_id(x,y+1)#
 
         if (neighborCell == Id.WATER || neighborCell == Id.AIR || neighborCell == Id.FISH):
             cells.swap_cell(x, y, x, y+1)
-        else:
+            return
+        elif falling:
             falling = false
+            
+    if !falling: 
+        if rand_range(0,1) > 0.3:
             if !is_in_water(cells, x, y):
                 cells.kill(x,y)
-    else: 
-        if light[x][y] < 0.9:
-            var yp = y-1
-            var xp = x
-            var neighborCell = cells.get_cell_id(x,yp)
-            if neighborCell == Id.WATER:
-                cells.set_cell_id(xp,yp,Id.KELP)
-                cells.get_cell(xp,yp).update(cells, light, xp, yp)
+            elif light[x][y] > rand_range(0,1):
+                var yp = y-1
+                var xp = x + randi()%3-1
+                var neighborCell = cells.get_cell_id(x,yp)
+                if neighborCell == Id.WATER:
+                    cells.set_cell_id_safe(xp,yp,Id.KELP)
+                #cells.get_cell(xp,yp).update(cells, light, xp, yp)
         
             
             
