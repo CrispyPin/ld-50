@@ -13,10 +13,12 @@ var draw
 
 # Called when the node enters the scene tree for the first time.
 func getCell(x: int, y: int):
-    return cells[x%draw.size[0]][y%draw.size[1]]
+    #return cells[x%draw.size[0]][y%draw.size[1]]
+    return cells[x][y]
 
 func setCell(x: int, y: int, cell):
-    cells[x%draw.size[0]][y%draw.size[1]] = cell
+    #cells[x%draw.size[0]][y%draw.size[1]] = cell
+    cells[x][y] = cell
 
 func swapCell(x1: int, y1: int, x2: int, y2: int):
     var tmp = getCell(x1,y1)
@@ -28,11 +30,16 @@ func _ready():
     for x in range(draw.size[0]):
         cells.append([])
         for y in range(draw.size[1]):
-            if rand_range(0,1)>0.5:
-                cells[x].append(SimpleCell.new(Color(rand_range(0,1),rand_range(0,1),rand_range(0,1),1)))
+            var r = rand_range(0,1)
+            if x!=0 && y!=0 && x!=draw.size[0]-1 && y!=draw.size[1]-1:
+                if r>0.8:
+                    cells[x].append(SimpleCell.new(Color(rand_range(0,1),rand_range(0,1),rand_range(0,1),1)))
+                elif r>0.4:
+                    cells[x].append(AirCell.new())
+                else:
+                    cells[x].append(WaterCell.new())
             else:
-                cells[x].append(AirCell.new())
-            
+                cells[x].append(WallCell.new())
     
     pass # Replace with function body.
 func _process(delta):

@@ -27,13 +27,25 @@ _global_script_classes=[ {
 "base": "Cell",
 "class": "SimpleCell",
 "language": "GDScript",
-"path": "res://scripts/cells/simple_cell.gd"
+"path": "res://scripts/cells/sand_cell.gd"
+}, {
+"base": "Cell",
+"class": "WallCell",
+"language": "GDScript",
+"path": "res://scripts/cells/wall_cell.gd"
+}, {
+"base": "Cell",
+"class": "WaterCell",
+"language": "GDScript",
+"path": "res://scripts/cells/water_cell.gd"
 } ]
 _global_script_class_icons={
 "AirCell": "",
 "Cell": "",
 "Cells": "",
-"SimpleCell": ""
+"SimpleCell": "",
+"WallCell": "",
+"WaterCell": ""
 }
 
 [application]

@@ -4,16 +4,11 @@ extends Cell
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-class_name SimpleCell
-
-var _col: Color
-
-# Called when the node enters the scene tree for the first time.
-func _init(col: Color):
-    self._col = col
+class_name WaterCell
+    
 
 func draw():
-    return _col
+    return Color(0.4,0.4,1)
  
 func update(cells, x: int, y: int):
     var dx = randi()%3-1;
@@ -21,7 +16,7 @@ func update(cells, x: int, y: int):
     if dx != 0:
         dy = 0
 
-    if cells.getCell(x+dx,y+dy) is AirCell && y<90:
+    if cells.getCell(x+dx,y+dy) is AirCell:
         cells.swapCell(x, y, x+dx, y+dy)
         
         
