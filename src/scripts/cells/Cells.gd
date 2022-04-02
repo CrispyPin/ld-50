@@ -89,6 +89,9 @@ func _ready():
                         cells[x].append(WaterCell.new())
             else:
                 cells[x].append(WallCell.new())
+    
+    #set_cell(50,50,KelpCell.new())
+    
     for y in range(draw.size[1]):         
         for x in range(draw.size[0]):
             _update_light(x,y)
@@ -134,8 +137,9 @@ func _update_color(x: int, y: int):
     var g = col.g*col.g;
     var b = col.b*col.b;
             
-            
-    var l = light[x][y]
+    
+    var min_l = 0.01
+    var l = (light[x][y]+min_l)/(1.0+min_l)
     # linear color space light
     r = r * l
     g = g * l
@@ -153,7 +157,7 @@ func _process(delta):
     for i in range(draw.size[0]*20):
         var x = randi()%draw.size[0]
         var y = randi()%draw.size[1]
-        cells[x][y].update(self, x, y)
+        cells[x][y].update(self, light, x, y)
     #for i in range(draw.size[0]*5):
     #    var x = randi()%draw.size[0]
     #    var y = randi()%draw.size[1]

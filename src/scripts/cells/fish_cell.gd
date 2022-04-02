@@ -8,6 +8,8 @@ class_name FishCell
 
 var _col: Color
 
+var dying: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _init():
     self._col = Color.from_hsv(rand_range(0,0.5),1,1)#Color(rand_range(0.6,0.8),rand_range(0.6,0.8),rand_range(0.4,0.6),1)
@@ -18,7 +20,7 @@ func getId():
 func draw():
     return _col
  
-func update(cells, x: int, y: int):
+func update(cells, light, x: int, y: int):
     var dx = randi()%3-1;
     var dy = randi()%3-1;
 
@@ -29,8 +31,12 @@ func update(cells, x: int, y: int):
     #if (neighborCell is AirCell || neighborCell is WaterCell):
     if (neighborCell == Id.WATER):
         cells.swap_cell(x, y, x+dx, y+dy)
+        dying = false
     elif (neighborCell == Id.AIR):
-        cells.set_cell(x, y, SandCell.new())
+        if dying:
+            cells.set_cell(x, y, SandCell.new())
+        dying = true
+        
             
             
         

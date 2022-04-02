@@ -4,33 +4,35 @@ extends Cell
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-class_name WaterCell
-    
+class_name KelpCell
 
 var _col: Color
 
+var falling: bool = true
+
 # Called when the node enters the scene tree for the first time.
 func _init():
-    self._col = Color(0.2,0.2,1.0) #Color(rand_range(0.0,0.2),rand_range(0.0,0.2),rand_range(0.4,1.0),1)*2.0
+    self._col = Color(0.0, 1.0, 0.0)#Color(rand_range(0.6,0.8),rand_range(0.6,0.8),rand_range(0.4,0.6),1)
 
 func getId():
-    return Id.WATER
+    return Id.KELP
 
 func draw():
     return _col
  
 func update(cells, light, x: int, y: int):
-    var dx = randi()%3-1;
-    var dy = 1
-    if dx != 0:
-        dy = 0
-    
-    var neighborcell = cells.get_cell_id(x+dx,y+dy)
-    
-    
-    
-    if neighborcell == Id.AIR:
-        cells.swap_cell(x, y, x+dx, y+dy)
+
+    if falling:
+        var neighborCell = cells.get_cell_id(x,y+1)
+
+        if (neighborCell == Id.WATER || neighborCell == Id.AIR):
+            cells.swap_cell(x, y, x, y+1)
+        else:
+            falling = false
+
+        
+            
+            
         
         
         #cells[x][y] = AirCell.new()   
