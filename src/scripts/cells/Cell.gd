@@ -44,7 +44,7 @@ func is_in_water(cells, x, y) -> bool:
 func draw():
     return Color(0,0,0,1)
     
-func update(cells, light, x: int, y: int):
+func update(_cells, _light, _x: int, _y: int):
     pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

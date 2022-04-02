@@ -14,7 +14,7 @@ var draw
 # get id at coordinates
 
 func bounds_check(x: int, y: int) -> bool:
-    return !(x<0 || y<0 || x>=draw.size[0] || y>= draw.size[1])
+    return !(x<0 || y<0 || x>=draw.size[0] || y>=draw.size[1])
 
 func get_cell_id(x: int, y: int) -> int:
     if bounds_check(x,y):
@@ -30,7 +30,7 @@ func set_cell_id(x: int, y: int, id):
     set_cell(x,y,make_cell_from_id(id))
     
 # creates a new cell with specified id
-func make_cell_from_id(id) -> Cell:
+func make_cell_from_id(id): # -> Cell
     if id == Cell.Id.WALL:
         return WallCell.new()
     if id == Cell.Id.WATER:
@@ -39,8 +39,6 @@ func make_cell_from_id(id) -> Cell:
         return SandCell.new()
     if id == Cell.Id.FISH:
         return FishCell.new()
-    if id == Cell.Id.TREE:
-        return TreeCell.new()
     if id == Cell.Id.KELP:
         return KelpCell.new()
     else:
@@ -72,6 +70,8 @@ func swap_cell(x1: int, y1: int, x2: int, y2: int):
 
 func _ready():
     draw = get_parent()
+
+    
     yield(draw, "ready")
 
     
@@ -104,33 +104,39 @@ func _ready():
     for y in range(draw.size[1]):         
         for x in range(draw.size[0]):
             _update_light(x,y)
+
 func redraw(x: int, y: int):
-    _update_light(x,y)
+    if bounds_check(x, y):
+        _update_light(x,y)
 
 func _update_light(x: int, y: int):
     var id = get_cell_id(x,y)
     
-    var old_light = light[x][y]
+    var dx = 1
+    
+    
+    var x_above = x-dx
+    var y_above = y-1
+    
+    var x_below = x+dx
+    var y_below = y+1
+    
+    #var old_light = light[x][y]
     if id == Cell.Id.WALL:
         light[x][y] = 1.0
     else:
         
-        var dx = 1
         
-        # cell above
-        var xp = x-dx
-        var yp = y-1
-        
-        var idp = get_cell_id(xp,yp)
+        var id_above = get_cell_id(x_above,y_above)
         
         var dl = 0.7
-        if idp == Cell.Id.AIR:
+        if id_above == Cell.Id.AIR || id_above == Cell.Id.WALL:
             dl = 1.0
             #return light[xp][yp]
-        elif idp == Cell.Id.WATER:
+        elif id_above == Cell.Id.WATER:
             dl = 0.9
         
-        var new_light = light[xp][yp] * dl
+        var new_light = light[x_above][y_above] * dl
         
         light[x][y] = new_light
         
@@ -138,8 +144,8 @@ func _update_light(x: int, y: int):
         #    pass
         
         # cell below
-        _update_light(x+dx,y+1)
-        _update_color(x, y)
+        _update_light(x_below,y_below)
+    _update_color(x, y)
         
         
 func _update_color(x: int, y: int):
@@ -164,7 +170,7 @@ func _update_color(x: int, y: int):
     draw.set_pixel (x, y, Color(r,g,b))
     
 
-func _process(delta):
+func _process(_delta):
     for i in range(draw.size[0]*20):
         var x = randi()%draw.size[0]
         var y = randi()%draw.size[1]
