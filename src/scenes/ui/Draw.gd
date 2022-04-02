@@ -38,13 +38,9 @@ func _ready():
     #image.load("res://icon.png")
     image.create(screen_size[0],screen_size[1],false, Image.FORMAT_RGB8)
 
-    image.fill(Color(1,0,1,1))
+    image.fill(Color(0,0,0,1))
     
-    image.lock()
-    for i in range(0,size[0]):
-        for j in range(0,size[1]):
-            image.set_pixel ( i, j, Color(rand_range(0,1),rand_range(0,1),rand_range(0,1),1))
-    image.unlock()
+
 
     
     print(image)
@@ -72,15 +68,17 @@ func _create_update_texture():
 #func _process(delta):
 #    pass
 
-func set_pixel(p: Vector2, c: Color):
+func set_pixel(x: int, y: int, c: Color):
     image.lock()
-    image.set_pixel(p.x, p.y, c)
+    image.set_pixel(x, y, c)
     image.unlock()
     image_changed = true
 
  
 
 func _process(delta):
+    self.set_pixel ( rand_range(0,size[0]), rand_range(0,size[0]), Color(rand_range(0,1),rand_range(0,1),rand_range(0,1),1))
+    _create_update_texture()
     
     update() #hack :)
 
