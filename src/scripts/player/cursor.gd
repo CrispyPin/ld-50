@@ -20,7 +20,6 @@ func _process(_delta):
 		if pixel_pos[0] * pixel_pos[1] > 0 \
 			and pixel_pos[0] < draw.size[0] -1 \
 			and pixel_pos[1] < draw.size[1] -1:
-				print(pixel_pos)
 				cells.set_cell_id(pixel_pos[0], pixel_pos[1], cell_type)
 		
 		
