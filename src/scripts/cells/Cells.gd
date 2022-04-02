@@ -1,10 +1,6 @@
 extends Node
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 class_name Cells
 
 var cells = []
@@ -43,6 +39,14 @@ func make_cell_from_id(id): # -> Cell
         return KelpCell.new()
     if id == Cell.Id.TREE:
         return TreeCell.new()
+    if id == Cell.Id.TREE2:
+        var c = TreeCell.new()
+        c.type = "tree_2"
+        return c
+    if id == Cell.Id.FLOWER1:
+        var c = TreeCell.new()
+        c.type = "flower_1"
+        return c
     else:
         if !id == Cell.Id.AIR:
             print("INVALID CELL ID REQUESTED:")
@@ -104,6 +108,8 @@ func _ready():
 
     set_cell(150,40,TreeCell.new())
     set_cell(170,40,TreeCell.new())
+    set_cell_id(185,40,Cell.Id.TREE2)
+    set_cell_id(135,40,Cell.Id.FLOWER1)
 
     
     for x in range(draw.size[0]):

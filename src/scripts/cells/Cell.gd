@@ -1,13 +1,6 @@
 extends Object
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-
-
 class_name Cell
 
 enum Id {
@@ -18,6 +11,8 @@ enum Id {
     FISH,
     KELP,
     TREE,
+    TREE2,
+    FLOWER1,
 }
 
 func kill(cells, x, y):
@@ -27,9 +22,6 @@ func kill(cells, x, y):
 func getId():
     return Id.AIR
 
-# Called when the node enters the scene tree for the first time.
-#func _ready():
-#    pass # Replace with function body.
 
 func has_nearby(cells, x: int, y: int, id) -> bool:
     for dx in range(-1,2):
@@ -47,6 +39,3 @@ func draw():
 func update(_cells, _light, _x: int, _y: int):
     pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#    pass

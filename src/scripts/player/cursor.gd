@@ -1,8 +1,5 @@
 extends TextureRect
 
-signal place_cell
-
-
 var pixel_pos
 var cell_type = Cell.Id.TREE
 
@@ -21,15 +18,9 @@ func _process(_delta):
 			and pixel_pos[0] < draw.size[0] -1 \
 			and pixel_pos[1] < draw.size[1] -1:
 				cells.set_cell_id(pixel_pos[0], pixel_pos[1], cell_type)
-		
-		
 
-
-func _input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_RIGHT && event.pressed:
-			cell_type = cells.get_cell_id(pixel_pos[0], pixel_pos[1])
-
+	elif Input.get_mouse_button_mask() == BUTTON_RIGHT:
+		cell_type = cells.get_cell_id(pixel_pos[0], pixel_pos[1])
 
 func snap_position(screen_pos: Vector2, grid_size) -> Vector2:
 	var p = screen_to_pixel(screen_pos, grid_size)
