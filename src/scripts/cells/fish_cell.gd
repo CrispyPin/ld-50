@@ -24,7 +24,7 @@ func draw():
     return _col
  
 var dx = -1;
-func update(cells, light, x: int, y: int):
+func update(cells, _light, x: int, y: int):
     
     var dy = randi()%3-1;
     
@@ -61,8 +61,8 @@ func update(cells, light, x: int, y: int):
     else:
         dx*=-1;
         
-    if light[x + dx][py]>light[x - dx][py]:
-        dx*=-1;
+    #if light[x + dx][py]>light[x - dx][py]:
+    #    dx*=-1;
         
         
             
