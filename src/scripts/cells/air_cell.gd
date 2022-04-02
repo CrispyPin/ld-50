@@ -1,0 +1,17 @@
+extends Cell
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
+class_name AirCell
+
+# Called when the node enters the scene tree for the first time.
+
+func draw():
+    return Color(0.8,0.8,1)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#    pass

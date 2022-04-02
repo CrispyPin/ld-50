@@ -8,6 +8,34 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Cell",
+"class": "AirCell",
+"language": "GDScript",
+"path": "res://scripts/cells/air_cell.gd"
+}, {
+"base": "Object",
+"class": "Cell",
+"language": "GDScript",
+"path": "res://scripts/cells/Cell.gd"
+}, {
+"base": "Node",
+"class": "Cells",
+"language": "GDScript",
+"path": "res://scripts/cells/Cells.gd"
+}, {
+"base": "Cell",
+"class": "SimpleCell",
+"language": "GDScript",
+"path": "res://scripts/cells/simple_cell.gd"
+} ]
+_global_script_class_icons={
+"AirCell": "",
+"Cell": "",
+"Cells": "",
+"SimpleCell": ""
+}
+
 [application]
 
 config/name="LD 50"

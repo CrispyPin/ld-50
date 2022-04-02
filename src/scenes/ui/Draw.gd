@@ -26,6 +26,7 @@ func _ready():
     #self.screen_size[0] = resolution.x;
     #self.screen_size[1] = resolution.y;
     
+    self.texture = ImageTexture.new()
     
     self.screen_size = size
     
@@ -57,16 +58,17 @@ func _ready():
     #pass # Replace with function body.
 func _create_update_texture():
 
-    var tmp_texture = ImageTexture.new()
     
-    tmp_texture.create_from_image(self.image)
-    tmp_texture.flags = 0
-    self.texture = tmp_texture
+    
+    texture.create_from_image(self.image)
+    texture.flags = 0
+
     pass   
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #    pass
+
 
 func set_pixel(x: int, y: int, c: Color):
     image.lock()
@@ -77,8 +79,10 @@ func set_pixel(x: int, y: int, c: Color):
  
 
 func _process(delta):
-    self.set_pixel ( rand_range(0,size[0]), rand_range(0,size[0]), Color(rand_range(0,1),rand_range(0,1),rand_range(0,1),1))
-    _create_update_texture()
+    #self.set_pixel ( rand_range(0,size[0]), rand_range(0,size[0]), Color(rand_range(0,1),rand_range(0,1),rand_range(0,1),1))
+    
+    if image_changed:
+        _create_update_texture()
     
     update() #hack :)
 
