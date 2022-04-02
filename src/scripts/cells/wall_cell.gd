@@ -8,6 +8,9 @@ class_name WallCell
 
 # Called when the node enters the scene tree for the first time.
 
+func getId():
+    return Id.WALL
+
 func draw():
     return Color(0,0,0)
 

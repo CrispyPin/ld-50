@@ -7,23 +7,42 @@ extends Node
 
 class_name Cells
 
+
+
 var cells = []
 
 var draw
 
-# Called when the node enters the scene tree for the first time.
-func getCell(x: int, y: int):
+# get id at coordinates
+func get_cell_id(x: int, y: int):
+    return cells[x][y].getId()
+    
+func set_cell_id(x: int, y: int, id):
+    set_cell(x,y,make_cell_from_id(id))
+    
+# creates a new cell with specified id
+func make_cell_from_id(id):
+    if id == Cell.Id.AIR:
+        return AirCell.new()
+    if id == Cell.Id.WALL:
+        return WallCell.new()
+    if id == Cell.Id.WATER:
+        return WaterCell.new()
+    if id == Cell.Id.SAND:
+        return SandCell.new()
+
+func get_cell(x: int, y: int):
     #return cells[x%draw.size[0]][y%draw.size[1]]
     return cells[x][y]
 
-func setCell(x: int, y: int, cell):
+func set_cell(x: int, y: int, cell):
     #cells[x%draw.size[0]][y%draw.size[1]] = cell
     cells[x][y] = cell
 
-func swapCell(x1: int, y1: int, x2: int, y2: int):
-    var tmp = getCell(x1,y1)
-    setCell(x1,y1, getCell(x2,y2))
-    setCell(x2,y2, tmp)
+func swap_cell(x1: int, y1: int, x2: int, y2: int):
+    var tmp = get_cell(x1,y1)
+    set_cell(x1,y1, get_cell(x2,y2))
+    set_cell(x2,y2, tmp)
 
 func _ready():
     draw = get_parent()
@@ -33,7 +52,7 @@ func _ready():
             var r = rand_range(0,1)
             if x!=0 && y!=0 && x!=draw.size[0]-1 && y!=draw.size[1]-1:
                 if r>0.8:
-                    cells[x].append(SimpleCell.new(Color(rand_range(0,1),rand_range(0,1),rand_range(0,1),1)))
+                    cells[x].append(SandCell.new())
                 elif r>0.4:
                     cells[x].append(AirCell.new())
                 else:

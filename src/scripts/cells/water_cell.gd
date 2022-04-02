@@ -7,17 +7,30 @@ extends Cell
 class_name WaterCell
     
 
+var _col: Color
+
+# Called when the node enters the scene tree for the first time.
+func _init():
+    self._col = Color(rand_range(0.0,0.2),rand_range(0.0,0.2),rand_range(0.4,1.0),1)*2.0
+
+func getId():
+    return Id.WATER
+
 func draw():
-    return Color(0.4,0.4,1)
+    return _col
  
 func update(cells, x: int, y: int):
     var dx = randi()%3-1;
     var dy = 1
     if dx != 0:
         dy = 0
-
-    if cells.getCell(x+dx,y+dy) is AirCell:
-        cells.swapCell(x, y, x+dx, y+dy)
+    
+    var neighborcell = cells.get_cell_id(x+dx,y+dy)
+    
+    
+    
+    if neighborcell == Id.AIR:
+        cells.swap_cell(x, y, x+dx, y+dy)
         
         
         #cells[x][y] = AirCell.new()   

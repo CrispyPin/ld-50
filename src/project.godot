@@ -25,7 +25,7 @@ _global_script_classes=[ {
 "path": "res://scripts/cells/Cells.gd"
 }, {
 "base": "Cell",
-"class": "SimpleCell",
+"class": "SandCell",
 "language": "GDScript",
 "path": "res://scripts/cells/sand_cell.gd"
 }, {
@@ -43,7 +43,7 @@ _global_script_class_icons={
 "AirCell": "",
 "Cell": "",
 "Cells": "",
-"SimpleCell": "",
+"SandCell": "",
 "WallCell": "",
 "WaterCell": ""
 }
