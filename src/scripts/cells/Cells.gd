@@ -149,7 +149,7 @@ func _update_color(x: int, y: int):
     var b = col.b*col.b;
             
     
-    var min_l = 0.01
+    var min_l = 0.05
     var l = (light[x][y]+min_l)/(1.0+min_l)
     # linear color space light
     r = r * l
