@@ -22,6 +22,10 @@ func get_cell_id(x: int, y: int) -> int:
 func kill(x: int, y: int):
     get_cell(x,y).kill(self,x,y)
 
+func set_cell_id_safe(x: int, y: int, id):
+    if get_cell_id(x,y)!=Cell.Id.WALL:
+        set_cell(x,y,make_cell_from_id(id))
+
 func set_cell_id(x: int, y: int, id):
     set_cell(x,y,make_cell_from_id(id))
     
@@ -64,7 +68,7 @@ func set_cell(x: int, y: int, cell):
     #cells[x%draw.size[0]][y%draw.size[1]] = cell
     if bounds_check(x,y):
         cells[x][y] = cell
-        _update_light(x,y)
+        redraw(x,y)
         
 
 func swap_cell(x1: int, y1: int, x2: int, y2: int):
@@ -96,7 +100,7 @@ func _ready():
                 elif v<0.2:
                     cells[x].append(AirCell.new())
                 else:
-                    if r>0.98:
+                    if r>1.98:
                         cells[x].append(FishCell.new())
                     else:
                         cells[x].append(WaterCell.new())
@@ -126,6 +130,9 @@ func redraw(x: int, y: int):
         _update_light(x,y)
 
 func _update_light(x: int, y: int):
+    _update_light_inner(x,y,true)
+
+func _update_light_inner(x: int, y: int, unconditional_recursion: bool):
     var id = get_cell_id(x,y)
     
     var dx = 1
@@ -151,7 +158,7 @@ func _update_light(x: int, y: int):
             dl = 1.0
             #return light[xp][yp]
         elif id_above == Cell.Id.WATER:
-            dl = 0.9
+            dl = 0.95
         
         new_light = light[x_above][y_above] * dl
         
@@ -162,9 +169,10 @@ func _update_light(x: int, y: int):
         
         # cell below
     light[x][y] = new_light
-    if bounds_check(x_below, y_below):
-        _update_light(x_below,y_below)
     _update_color(x, y)
+    if bounds_check(x_below, y_below) and (old_light != new_light or unconditional_recursion):
+        _update_light_inner(x_below,y_below,false)
+    
         
         
 func _update_color(x: int, y: int):
@@ -174,7 +182,7 @@ func _update_color(x: int, y: int):
     var b = col.b*col.b;
             
     
-    var min_l = 0.05
+    var min_l = 0.01
     var l = (light[x][y]+min_l)/(1.0+min_l)
     # linear color space light
     r = r * l
