@@ -11,10 +11,5 @@ func _ready():
 	pass # Replace with function body.
 
 
-func _input(event):
-	if event is InputEventMouseMotion:
-		rect_position = event.position + event.relative*2
-
-
-#func _process(_delta):
-#	rect_position = get_viewport().get_mouse_position()
+func _process(_delta):
+	rect_position = get_viewport().get_mouse_position()
