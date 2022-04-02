@@ -18,7 +18,7 @@ func getId():
 func draw():
     return _col
  
-func update(cells, x: int, y: int):
+func update(cells, light, x: int, y: int):
     var dx = randi()%3-1;
     
     
