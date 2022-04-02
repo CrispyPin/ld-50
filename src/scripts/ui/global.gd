@@ -1,7 +1,7 @@
 extends Node
 
 const PAUSE_IN_MENU  = true
-const CAPTURE_CURSOR = true
+const CAPTURE_CURSOR = false
 const INSTANT_START = false
 
 

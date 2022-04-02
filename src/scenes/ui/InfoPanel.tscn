@@ -20,15 +20,15 @@ __meta__ = {
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 554.0
-margin_bottom = 99.0
+margin_bottom = 107.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 546.0
-margin_bottom = 91.0
+margin_left = 12.0
+margin_top = 8.0
+margin_right = 538.0
+margin_bottom = 95.0
 custom_constants/margin_right = 8
 custom_constants/margin_top = 8
 custom_constants/margin_left = 8
@@ -37,7 +37,7 @@ custom_constants/margin_bottom = 8
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer"]
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 534.0
+margin_right = 518.0
 margin_bottom = 79.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
