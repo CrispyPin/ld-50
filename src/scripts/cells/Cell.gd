@@ -16,6 +16,7 @@ enum Id {
     WATER,
     SAND,
     FISH,
+    TREE,
 }
 
 func getId():

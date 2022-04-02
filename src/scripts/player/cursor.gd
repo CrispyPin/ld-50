@@ -4,7 +4,7 @@ signal place_cell
 
 
 var pixel_pos
-var cell_type
+var cell_type = Cell.Id.TREE
 
 onready var grid = $"../Draw"
 onready var cells = $"../Draw/Cells"
@@ -15,13 +15,15 @@ func _ready():
 
 func _process(_delta):
 	rect_position = snap_position(get_viewport().get_mouse_position() - Vector2(6,6), 4)
+	pixel_pos = screen_to_pixel(get_viewport().get_mouse_position(), 4)
+	if Input.get_mouse_button_mask() & BUTTON_LEFT:
+		cells.set_cell_id(pixel_pos[0], pixel_pos[1], cell_type)
+		
+
 
 func _input(event):
 	if event is InputEventMouseButton:
-		pixel_pos = screen_to_pixel(get_viewport().get_mouse_position(), 4)
-		if event.button_index == BUTTON_LEFT:
-			cells.set_cell_id(pixel_pos[0], pixel_pos[1], cell_type)
-		elif event.button_index == BUTTON_RIGHT:
+		if event.button_index == BUTTON_RIGHT && event.pressed:
 			cell_type = cells.get_cell_id(pixel_pos[0], pixel_pos[1])
 
 

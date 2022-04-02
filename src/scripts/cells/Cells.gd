@@ -36,6 +36,8 @@ func make_cell_from_id(id) -> Cell:
         return SandCell.new()
     if id == Cell.Id.FISH:
         return FishCell.new()
+    if id == Cell.Id.TREE:
+        return TreeCell.new()
     else:
         if !id == Cell.Id.AIR:
             print("INVALID CELL ID REQUESTED:")
