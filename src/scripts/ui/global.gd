@@ -1,7 +1,7 @@
 extends Node
 
 const PAUSE_IN_MENU  = true
-const CAPTURE_CURSOR = false
+const CURSOR_MODE = Input.MOUSE_MODE_HIDDEN
 const INSTANT_START = true
 
 
