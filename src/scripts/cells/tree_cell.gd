@@ -1,27 +1,21 @@
 extends Cell
-
-
 class_name TreeCell
 
-var _col: Color
-
-const grow_offsets = [[-1, 0] , [0, -1], [1, 0], [0, 1]]
+var grow_offsets = [[0, -1], [-1, 0], [1, 0], [0, 1]]
 
 var tex_x = 0
 var tex_y = 0
 var landed = false
-var pos_x = 0
-var pos_y = 0
-var grown_cells = 0
 
-var twidth: int
-var theight: int
+var t_width: int
+var t_height: int
 
 func _init():
-	twidth = Textures.t.tree_1.get_width()
-	theight = Textures.t.tree_1.get_height()
+	t_width = Textures.t.tree_1.get_width()
+	t_height = Textures.t.tree_1.get_height()
 	tex_x = 6
-	tex_y = theight-1
+	tex_y = t_height - 1
+	grow_offsets.shuffle()
 
 func getId():
 	return Id.TREE
@@ -33,11 +27,10 @@ func draw():
 
 func update(cells, light, x: int, y: int):
 	if landed:
-		if grown_cells < 3:
+		if grow_offsets:
 			grow(cells, light, x, y)
 		return
-	pos_x = x
-	pos_y = y
+
 	# falling logic
 	var cell_below = cells.get_cell_id(x, y + 1)
 	if cell_below in [Id.SAND]:
@@ -46,38 +39,38 @@ func update(cells, light, x: int, y: int):
 		cells.set_cell(x, y, AirCell.new())
 	else:
 		cells.swap_cell(x, y, x, y+1)
-		
 
-func grow(cells, light, x: int, y: int):
-	for delta in grow_offsets:
-		var tx = delta[0] + x
-		var ty = delta[1] + y
-		
-		# check if in bounds of texture
-		if tex_y + delta[1] < 0 \
-			or tex_y + delta[1] >= twidth \
-			or tex_x + delta[0] >= theight \
-			or tex_x + delta[0] < 0:
-				continue
-		
-		# this was a valid attempt
-		grown_cells += 1
-		# check if texture has cells there
-#		var pixel = pixel(delta[0], delta[1])
-		var pixel = Textures.t.tree_1.get_pixel(tex_x + delta[0], tex_y + delta[1])
-		if pixel.a == 0:
-			continue
-		
-		# check if target location is free
-		var target_cell = cells.get_cell_id(tx, ty)
-		if !(target_cell in [Id.AIR, Id.WATER]):
-			continue
-		
-		cells.set_cell_id(tx, ty, Id.TREE)
-		var new = cells.get_cell(tx, ty)
-		if new.getId() != Id.TREE:
-			continue # setting the cell to tree failed for some reason
-		new.tex_x = tex_x + delta[0]
-		new.tex_y = tex_y + delta[1]
-		new.landed = true
-		
+
+func grow(cells, _light, x: int, y: int):
+	var delta = grow_offsets.pop_front()
+	var dx = delta[0]
+	var dy = delta[1]
+	var target_x = x + dx
+	var target_y = y + dy
+	
+	# check if in bounds of texture
+	if tex_y + dy < 0 \
+		or tex_y + dy >= t_width \
+		or tex_x + dx >= t_height \
+		or tex_x + dx < 0:
+			return
+	
+	# check if texture has cells there
+	var pixel = Textures.t.tree_1.get_pixel(tex_x + dx, tex_y + dy)
+	if pixel.a == 0:
+		return
+	
+	# check if target location is free
+	var target_cell = cells.get_cell_id(target_x, target_y)
+	if !(target_cell in [Id.AIR]):
+		return
+	
+	cells.set_cell_id(target_x, target_y, Id.TREE)
+
+	var new = cells.get_cell(target_x, target_y)
+	if new.getId() != Id.TREE:
+		return # setting the cell to tree failed for some reason
+	new.tex_x = tex_x + dx
+	new.tex_y = tex_y + dy
+	new.landed = true
+

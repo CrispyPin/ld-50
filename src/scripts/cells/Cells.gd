@@ -41,6 +41,8 @@ func make_cell_from_id(id): # -> Cell
         return FishCell.new()
     if id == Cell.Id.KELP:
         return KelpCell.new()
+    if id == Cell.Id.TREE:
+        return TreeCell.new()
     else:
         if !id == Cell.Id.AIR:
             print("INVALID CELL ID REQUESTED:")
@@ -163,7 +165,7 @@ func _update_color(x: int, y: int):
     var b = col.b*col.b;
             
     
-    var min_l = 0.01
+    var min_l = 0.05
     var l = (light[x][y]+min_l)/(1.0+min_l)
     # linear color space light
     r = r * l
