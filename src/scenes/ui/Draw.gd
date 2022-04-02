@@ -82,7 +82,7 @@ func set_pixel(x: int, y: int, c: Color):
 
  
 
-func _process(delta):
+func _process(_delta):
     #self.set_pixel ( rand_range(0,size[0]), rand_range(0,size[0]), Color(rand_range(0,1),rand_range(0,1),rand_range(0,1),1))
     
     if image_changed:

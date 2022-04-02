@@ -101,9 +101,14 @@ func _ready():
     set_cell(52,50,KelpCell.new())
     set_cell(48,50,KelpCell.new())
     
-    for y in range(draw.size[1]):         
-        for x in range(draw.size[0]):
-            _update_light(x,y)
+    for x in range(draw.size[0]):
+        _update_light(x,0)
+    for y in range(draw.size[1]):
+        _update_light(0,y)
+    
+    #for y in range(draw.size[1]):         
+    #    for x in range(draw.size[0]):
+    #        _update_light(x,y)
 
 func redraw(x: int, y: int):
     if bounds_check(x, y):
@@ -121,9 +126,10 @@ func _update_light(x: int, y: int):
     var x_below = x+dx
     var y_below = y+1
     
-    #var old_light = light[x][y]
+    var old_light = light[x][y]
+    var new_light = 0.0
     if id == Cell.Id.WALL:
-        light[x][y] = 1.0
+        new_light = 1.0
     else:
         
         
@@ -136,14 +142,16 @@ func _update_light(x: int, y: int):
         elif id_above == Cell.Id.WATER:
             dl = 0.9
         
-        var new_light = light[x_above][y_above] * dl
+        new_light = light[x_above][y_above] * dl
         
-        light[x][y] = new_light
+        
         
         #if new_light!=old_light:
         #    pass
         
         # cell below
+    light[x][y] = new_light
+    if bounds_check(x_below, y_below):
         _update_light(x_below,y_below)
     _update_color(x, y)
         
@@ -171,7 +179,7 @@ func _update_color(x: int, y: int):
     
 
 func _process(_delta):
-    for i in range(draw.size[0]*20):
+    for _i in range(draw.size[0]*20):
         var x = randi()%draw.size[0]
         var y = randi()%draw.size[1]
         cells[x][y].update(self, light, x, y)
@@ -184,4 +192,3 @@ func _process(_delta):
     #for x in range(draw.size[0]):
     #    for y in range(draw.size[1]):
     #       _update_color(x, y)
-

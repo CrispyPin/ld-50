@@ -10,7 +10,7 @@ var _col: Color
 
 # Called when the node enters the scene tree for the first time.
 func _init():
-    self._col = Color(0.7,0.7,0.5)#Color(rand_range(0.6,0.8),rand_range(0.6,0.8),rand_range(0.4,0.6),1)
+    self._col = Color(0.7,0.7,0.5)*rand_range(1.1,0.9)#Color(rand_range(0.6,0.8),rand_range(0.6,0.8),rand_range(0.4,0.6),1)
 
 func getId():
     return Id.SAND
