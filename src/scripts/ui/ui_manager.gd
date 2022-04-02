@@ -31,8 +31,7 @@ func open_game_menu():
 
 func close_game_menu():
 	set_menu()
-	if Global.CAPTURE_CURSOR:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Input.set_mouse_mode(Global.CURSOR_MODE)
 	get_tree().paused = false
 
 
@@ -44,8 +43,7 @@ func start_game():
 	get_tree().root.add_child(game)
 	get_tree().paused = false
 
-	if Global.CAPTURE_CURSOR:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Input.set_mouse_mode(Global.CURSOR_MODE)
 	set_menu()
 	$Menus/SettingsMenu.update_menu()
 

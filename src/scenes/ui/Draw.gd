@@ -35,6 +35,7 @@ func _ready():
 
     image = Image.new()
     print(screen_size)
+    print(pixel_size)
     #image.load("res://icon.png")
     image.create(screen_size[0],screen_size[1],false, Image.FORMAT_RGB8)
 
