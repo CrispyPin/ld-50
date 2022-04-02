@@ -77,8 +77,10 @@ func swap_cell(x1: int, y1: int, x2: int, y2: int):
 func _ready():
     draw = get_parent()
 
+    
     yield(draw, "ready")
 
+    
     for x in range(draw.size[0]):
         cells.append([])
         light.append([])
@@ -100,8 +102,12 @@ func _ready():
                         cells[x].append(WaterCell.new())
             else:
                 cells[x].append(WallCell.new())
-    for x in range(0,draw.size[0],7):
-        set_cell(x,50,KelpCell.new())
+    
+    for x in range(20, 60, 2):
+        set_cell(x, 50, KelpCell.new())
+
+    set_cell(150,40,TreeCell.new())
+    set_cell(170,40,TreeCell.new())
 
     
     for x in range(draw.size[0]):

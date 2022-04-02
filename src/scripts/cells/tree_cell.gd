@@ -33,7 +33,7 @@ func update(cells, light, x: int, y: int):
 
 	# falling logic
 	var cell_below = cells.get_cell_id(x, y + 1)
-	if cell_below in [Id.SAND]:
+	if cell_below in [Id.SAND, Id.WALL]:
 		landed = true
 	elif cell_below == Id.TREE:
 		cells.set_cell(x, y, AirCell.new())
@@ -73,4 +73,5 @@ func grow(cells, _light, x: int, y: int):
 	new.tex_x = tex_x + dx
 	new.tex_y = tex_y + dy
 	new.landed = true
+	cells.redraw(target_x, target_y)
 
