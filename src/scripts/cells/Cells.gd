@@ -7,12 +7,8 @@ extends Node
 
 class_name Cells
 
-
-
 var cells = []
-
 var light = []
-
 var draw
 
 # get id at coordinates
@@ -57,6 +53,8 @@ func set_cell(x: int, y: int, cell):
     #cells[x%draw.size[0]][y%draw.size[1]] = cell
     if bounds_check(x,y):
         cells[x][y] = cell
+        _update_light(x,y)
+        
 
 func swap_cell(x1: int, y1: int, x2: int, y2: int):
     if !bounds_check(x1,y1) || !bounds_check(x2,y2):
@@ -67,12 +65,15 @@ func swap_cell(x1: int, y1: int, x2: int, y2: int):
 
 func _ready():
     draw = get_parent()
+    yield(draw, "ready")
+
+    
     for x in range(draw.size[0]):
         cells.append([])
         light.append([])
         for y in range(draw.size[1]):
             var r = rand_range(0,1)
-            light[x].append(rand_range(0,1))
+            light[x].append(0.0)
             
             if x!=0 && y!=0 && x!=draw.size[0]-1 && y!=draw.size[1]-1:
                 var u = (float(x)/draw.size[0]-0.5)*2.0
@@ -85,35 +86,42 @@ func _ready():
                     cells[x].append(WaterCell.new())
             else:
                 cells[x].append(WallCell.new())
-    
-    pass # Replace with function body.
+                
+    for x in range(draw.size[0]):
+        for y in range(draw.size[1]):
+            _update_light(x,y)
     
 func _update_light(x: int, y: int):
     var id = get_cell_id(x,y)
-    var rval = 0.0
     
-    var l_old = light[x][y]
+    var old_light = light[x][y]
     if id == Cell.Id.WALL:
         light[x][y] = 1.0
     else:
+        
+        # cell above
         var xp = x-1
         var yp = y-1
         
-        var dl = 0.7
-        
         var idp = get_cell_id(xp,yp)
         
+        var dl = 0.7
         if idp == Cell.Id.AIR:
             dl = 1.0
             #return light[xp][yp]
         elif idp == Cell.Id.WATER:
             dl = 0.9
         
-        rval = light[xp][yp] * dl
-        light[x][y] = rval
+        var new_light = light[xp][yp] * dl
         
-        if rval!=l_old:
-            _update_light(xp,yp)
+        light[x][y] = new_light
+        
+        #if new_light!=old_light:
+        #    pass
+        
+        # cell below
+        _update_light(x+1,y+1)
+        _update_color(x, y)
         
         
 func _update_color(x: int, y: int):
@@ -142,38 +150,13 @@ func _process(delta):
         var x = randi()%draw.size[0]
         var y = randi()%draw.size[1]
         cells[x][y].update(self, x, y)
-    for i in range(draw.size[0]*5):
-        var x = randi()%draw.size[0]
-        var y = randi()%draw.size[1]
-        _update_light(x,y)
-    
-
-        
-    for x in range(draw.size[0]):
-        for y in range(draw.size[1]):
-            # non-linear color
-            var col = cells[x][y].draw()
-            var r = col.r*col.r;
-            var g = col.g*col.g;
-            var b = col.b*col.b;
-            
-            
-            var l = light[x][y]
-            # linear color space light
-            r = r * l
-            g = g * l
-            b = b * l
-            
-            # non-linear color
-            r = sqrt(r)
-            g = sqrt(g)
-            b = sqrt(b)
-        
-            draw.set_pixel (x, y, Color(r,g,b))
-            #draw.set_pixel ( rand_range(0,draw.size[0]), rand_range(0,draw.size[1]), Color(rand_range(0,1),rand_range(0,1),rand_range(0,1),1))
+    #for i in range(draw.size[0]*5):
+    #    var x = randi()%draw.size[0]
+    #    var y = randi()%draw.size[1]
+    #   _update_light(x,y)
 
 
+    #for x in range(draw.size[0]):
+    #    for y in range(draw.size[1]):
+    #       _update_color(x, y)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#    pass
