@@ -11,6 +11,7 @@ enum Id {
 	WATER,
 	SAND,
 	FISH,
+	BIRD,
 	KELP,
 	GRASS,
 	TREE_1,

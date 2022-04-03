@@ -50,6 +50,8 @@ static func make_cell_from_id(id, args=[]): # -> Cell
             return DirtCell.new()
         Cell.Id.FISH:
             return FishCell.new()
+        Cell.Id.BIRD:
+            return BirdCell.new()
         Cell.Id.KELP:
             return KelpCell.new()
         Cell.Id.FIRE:
