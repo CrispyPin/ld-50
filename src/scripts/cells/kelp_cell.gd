@@ -35,9 +35,10 @@ func update(cells, light, x: int, y: int):
             
     if !falling: 
         if rand_range(0,1) > 0.3:
+            var r = rand_range(0,1)
             if !is_in_water(cells, x, y):
                 cells.kill(x,y)
-            elif light[x][y] > rand_range(0,1):
+            elif light[x][y] > rand_range(0,1) && light[x][y] < 0.5:
                 var yp = y-1
                 var xp = x + randi()%3-1
                 var neighborCell = cells.get_cell_id(x,yp)

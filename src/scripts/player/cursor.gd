@@ -1,7 +1,7 @@
 extends TextureRect
 
 var pixel_pos
-var cell_type = Cell.Id.TREE_1
+var cell_type = Cell.Id.FIRE
 
 onready var draw = $"../Draw"
 onready var cells = $"../Draw/Cells"

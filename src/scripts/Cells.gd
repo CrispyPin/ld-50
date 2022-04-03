@@ -7,6 +7,7 @@ var draw
 
 
 func bounds_check(x: int, y: int) -> bool:
+    #print(draw.size,", ",x,", ",y)
     return !(x<0 || y<0 || x>=draw.size[0] || y>=draw.size[1])
 
 func get_cell_id(x: int, y: int) -> int:
@@ -51,6 +52,10 @@ func make_cell_from_id(id): # -> Cell
             return GrassCell.new()
         Cell.Id.TREE_1:
             return PlantCell.new()
+        Cell.Id.FIRE:
+            return FireCell.new()
+        Cell.Id.SMOKE:
+            return SmokeCell.new()
         Cell.Id.TREE_2:
             var c = PlantCell.new()
             c.type = "tree_2"
@@ -76,6 +81,8 @@ func set_cell(x: int, y: int, cell):
     if bounds_check(x,y):
         cells[x][y] = cell
         redraw(x,y)
+    else:
+        print("SET CELL IN INVALID LOCATION")
 
 
 func swap_cell(x1: int, y1: int, x2: int, y2: int):
@@ -105,7 +112,7 @@ func _ready():
                 elif v<0.2:
                     cells[x].append(AirCell.new())
                 else:
-                    if r>1.98:
+                    if r>0.995:
                         cells[x].append(FishCell.new())
                     else:
                         cells[x].append(WaterCell.new())
@@ -204,7 +211,13 @@ func _process(_delta):
         var x = randi()%draw.size[0]
         var y = randi()%draw.size[1]
         cells[x][y].update(self, light, x, y)
-
+    
+    #for _i in range(10):
+    #    var x = randi()%draw.size[0]
+    #    var y = randi()%draw.size[1]
+    #    var id = get_cell_id(x,y)
+    #    if Cell.is_flammable(id):
+    #        set_cell_id(y, x, Cell.Id.FIRE)
     #for i in range(draw.size[0]*5):
     #    var x = randi()%draw.size[0]
     #    var y = randi()%draw.size[1]

@@ -30,6 +30,11 @@ _global_script_classes=[ {
 "path": "res://scripts/cells/dirt_cell.gd"
 }, {
 "base": "Cell",
+"class": "FireCell",
+"language": "GDScript",
+"path": "res://scripts/cells/fire_cell.gd"
+}, {
+"base": "Cell",
 "class": "FishCell",
 "language": "GDScript",
 "path": "res://scripts/cells/fish_cell.gd"
@@ -55,6 +60,11 @@ _global_script_classes=[ {
 "path": "res://scripts/cells/sand_cell.gd"
 }, {
 "base": "Cell",
+"class": "SmokeCell",
+"language": "GDScript",
+"path": "res://scripts/cells/smoke_cell.gd"
+}, {
+"base": "Cell",
 "class": "StoneCell",
 "language": "GDScript",
 "path": "res://scripts/cells/stone_cell.gd"
@@ -74,11 +84,13 @@ _global_script_class_icons={
 "Cell": "",
 "Cells": "",
 "DirtCell": "",
+"FireCell": "",
 "FishCell": "",
 "GrassCell": "",
 "KelpCell": "",
 "PlantCell": "",
 "SandCell": "",
+"SmokeCell": "",
 "StoneCell": "",
 "WallCell": "",
 "WaterCell": ""

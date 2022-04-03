@@ -16,19 +16,30 @@ enum Id {
 	TREE_1,
 	TREE_2,
 	FLOWER_1,
+    FIRE,
+    SMOKE,
 }
+
+static func is_flammable(id) -> bool:
+    return id in [ 
+        Id.GRASS, 
+        Id.TREE_1, 
+        Id.TREE_2, 
+        Id.FLOWER_1, 
+    ]
 
 func kill(cells, x, y):
 	cells.set_cell_id(x,y,Id.AIR)
 
-func is_plant(id) -> bool:
+static func is_plant(id) -> bool:
 	return id in [
 		Id.TREE_1,
 		Id.TREE_2,
 		Id.FLOWER_1,
+        
 	]
 
-func is_ground(id) -> bool:
+static func is_ground(id) -> bool:
 	return id in [
 		Id.WALL,
 		Id.STONE,
@@ -36,7 +47,7 @@ func is_ground(id) -> bool:
 		Id.DIRT,
 	]
 
-func has_nearby(cells, x: int, y: int, id) -> bool:
+static func has_nearby(cells, x: int, y: int, id) -> bool:
 	for dx in range(-1,2):
 		for dy in range(-1,2):
 			if cells.get_cell(x + dx, y + dy).getId() == id:

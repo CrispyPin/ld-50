@@ -19,9 +19,17 @@ func draw():
     return _col
  
 var dx = -1;
-func update(cells, _light, x: int, y: int):
+func update(cells, light, x: int, y: int):
     
     var dy = randi()%3-1;
+    var l = light[x][y]
+    if l>0.6:
+        dy = 1
+    elif l<0.3:
+        dy = -1
+        
+    
+    
     
     if dx == 0 && dy == 0:
         return
