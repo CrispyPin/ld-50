@@ -187,6 +187,8 @@ func _ready():
     set_cell_id(170,40,Cell.Id.TREE_1)
     set_cell_id(185,40,Cell.Id.TREE_2)
     set_cell_id(190,40,Cell.Id.GRASS)
+    set_cell_id(140,40,Cell.Id.GRASS)
+    set_cell_id(79,50,Cell.Id.FUNGUS)
 
     
     for x in range(draw.size[0]):
