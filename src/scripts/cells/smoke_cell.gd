@@ -4,7 +4,7 @@ class_name SmokeCell
 var _col: Color
 
 func _init():
-    self._col = Color(0.5,0.5,0.5) #Color(rand_range(0.0,0.2),rand_range(0.0,0.2),rand_range(0.4,1.0),1)*2.0
+    self._col = Color(0.6,0.6,0.6) #Color(rand_range(0.0,0.2),rand_range(0.0,0.2),rand_range(0.4,1.0),1)*2.0
 
 func getId():
     return Id.SMOKE
