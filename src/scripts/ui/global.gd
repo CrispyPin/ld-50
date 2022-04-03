@@ -18,10 +18,10 @@ const SETTINGS_DEF = {
 		"step": 5,
 	},
 	"pixel_size": {
-		"name": "World Scale",
+		"name": "Pixel Scale",
 		"flags": [],
 		"type": "number",
-		"default": 4,
+		"default": 6,
 		"min": 2,
 		"max": 12,
 		"step": 1,
