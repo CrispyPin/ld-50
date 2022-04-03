@@ -35,6 +35,11 @@ _global_script_classes=[ {
 "path": "res://scripts/cells/fish_cell.gd"
 }, {
 "base": "Cell",
+"class": "GrassCell",
+"language": "GDScript",
+"path": "res://scripts/cells/grass_cell.gd"
+}, {
+"base": "Cell",
 "class": "KelpCell",
 "language": "GDScript",
 "path": "res://scripts/cells/kelp_cell.gd"
@@ -70,6 +75,7 @@ _global_script_class_icons={
 "Cells": "",
 "DirtCell": "",
 "FishCell": "",
+"GrassCell": "",
 "KelpCell": "",
 "PlantCell": "",
 "SandCell": "",

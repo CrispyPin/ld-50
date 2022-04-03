@@ -12,6 +12,7 @@ enum Id {
 	SAND,
 	FISH,
 	KELP,
+	GRASS,
 	TREE_1,
 	TREE_2,
 	FLOWER_1,

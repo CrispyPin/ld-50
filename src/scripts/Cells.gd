@@ -47,6 +47,8 @@ func make_cell_from_id(id): # -> Cell
             return FishCell.new()
         Cell.Id.KELP:
             return KelpCell.new()
+        Cell.Id.GRASS:
+            return GrassCell.new()
         Cell.Id.TREE_1:
             return PlantCell.new()
         Cell.Id.TREE_2:
@@ -122,6 +124,7 @@ func _ready():
     set_cell_id(150,40,Cell.Id.TREE_1)
     set_cell_id(170,40,Cell.Id.TREE_1)
     set_cell_id(185,40,Cell.Id.TREE_2)
+    set_cell_id(190,40,Cell.Id.GRASS)
 
     
     for x in range(draw.size[0]):
