@@ -5,28 +5,32 @@ var cells = []
 var light = []
 var draw
 
+# for things that should never be out of bounds.
+func bounds_check_safe(x: int, y: int) -> bool:
+    return true#!(x<0 || y<0 || x>=draw.size[0] || y>=draw.size[1])
 
 func bounds_check(x: int, y: int) -> bool:
     #print(draw.size,", ",x,", ",y)
     return !(x<0 || y<0 || x>=draw.size[0] || y>=draw.size[1])
 
+# pre: x, y in bounds
 func get_cell_id(x: int, y: int) -> int:
-    if bounds_check(x,y):
+    if bounds_check_safe(x,y):
         return cells[x][y].getId()
     else:
         print("Get cell id invalid coordinate", x, y)
         return Cell.Id.AIR
 
-
+# pre: x, y in bounds
 func kill(x: int, y: int):
     get_cell(x,y).kill(self,x,y)
 
-
+# pre: x, y in bounds
 func set_cell_id_safe(x: int, y: int, id):
     if get_cell_id(x,y)!=Cell.Id.WALL:
         set_cell(x,y,make_cell_from_id(id))
 
-
+# pre: x, y in bounds
 func set_cell_id(x: int, y: int, id, args=[]):
     set_cell(x,y,make_cell_from_id(id, args))
 
@@ -75,24 +79,26 @@ static func make_cell_from_id(id, args=[]): # -> Cell
                 print("INVALID CELL ID REQUESTED:", id)
             return AirCell.new()
 
+# pre: x, y in bounds
 func get_cell(x: int, y: int):
     #return cells[x%draw.size[0]][y%draw.size[1]]
-    if !bounds_check(x,y):
+    if !bounds_check_safe(x,y):
         print("Get cell invalid coordinate", x, y)
         return make_cell_from_id(Cell.Id.AIR)
     return cells[x][y]
 
+# pre: x, y in bounds
 func set_cell(x: int, y: int, cell):
     #cells[x%draw.size[0]][y%draw.size[1]] = cell
-    if bounds_check(x,y):
+    if bounds_check_safe(x,y):
         cells[x][y] = cell
         redraw(x,y)
     else:
         print("SET CELL IN INVALID LOCATION")
 
-
+# pre: x, y in bounds
 func swap_cell(x1: int, y1: int, x2: int, y2: int):
-    if !bounds_check(x1,y1) || !bounds_check(x2,y2):
+    if !bounds_check_safe(x1,y1) || !bounds_check_safe(x2,y2):
         print("SWAP WITH INVALID LOCATION")
     var tmp = get_cell(x1,y1)
     set_cell(x1,y1, get_cell(x2,y2))
@@ -184,9 +190,10 @@ func _ready():
     #    for x in range(draw.size[0]):
     #        _update_light(x,y)
 
+# pre: x, y in bounds
 func redraw(x: int, y: int):
-    if bounds_check(x, y):
-        _update_light(x,y)
+    #if bounds_check_safe(x, y):
+    _update_light(x,y)
 
 func _update_light(x: int, y: int):
     _update_light_inner(x,y,true)
@@ -207,11 +214,12 @@ func _update_light_inner(x: int, y: int, unconditional_recursion: bool):
     if id == Cell.Id.WALL:
         new_light = 1.0
     else:
-        var id_above = get_cell_id(x_above,y_above)
         
-        if id_above == Cell.Id.FIRE:
+        
+        if false:#id == Cell.Id.FIRE:
             new_light = 1.0
         else:
+            var id_above = get_cell_id(x_above,y_above)
             var dl = 0.7
             if Cell.is_gas(id_above) || id_above == Cell.Id.WALL:
                 dl = 1.0
@@ -248,19 +256,23 @@ func _update_color(x: int, y: int):
         
     draw.set_pixel (x, y, Color(r,g,b))
     
-
-func _process(_delta):
+func update_simulation():
     for _i in range(draw.size[0] * Global.settings["update_rate"]):
         var x = randi()%draw.size[0]
         var y = randi()%draw.size[1]
         cells[x][y].update(self, light, x, y)
-    
+        
     if rand_range(0,1)>0.8:
         var x = randi()%draw.size[0]
         var y = randi()%draw.size[1]
         var id = get_cell_id(x,y)
         if Cell.is_flammable(id):
             set_cell_id(x, y, Cell.Id.FIRE)
+
+func _process(_delta):
+    update_simulation()
+    
+
     #for i in range(draw.size[0]*5):
     #    var x = randi()%draw.size[0]
     #    var y = randi()%draw.size[1]

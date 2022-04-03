@@ -23,10 +23,11 @@ func update(cells, light, x: int, y: int):
     
     var dy = randi()%3-1;
     var l = light[x][y]
-    if l>0.6:
-        dy = 1
-    elif l<0.3:
-        dy = -1
+    if rand_range(0,1)<0.8:
+        if l>0.6:
+            dy = 1
+        elif l<0.3:
+            dy = -1
         
     
     

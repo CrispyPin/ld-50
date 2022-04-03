@@ -4,7 +4,8 @@ class_name WaterCell
 var _col: Color
 
 func _init():
-    self._col = Color(0.2,0.2,1.0) #Color(rand_range(0.0,0.2),rand_range(0.0,0.2),rand_range(0.4,1.0),1)*2.0
+    self._col = Color(0.2,0.2,1.0) 
+    self._col = Color(rand_range(0.15,0.25),rand_range(0.15,0.25),rand_range(0.9,1.0))
 
 func kill(cells, x, y):
 	cells.set_cell_id(x,y,Id.SMOKE)
