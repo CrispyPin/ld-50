@@ -267,15 +267,18 @@ func update_simulation():
         var x = randi()%draw.size[0]
         var y = randi()%draw.size[1]
         cells[x][y].update(self, light, x, y)
-        
-    if randf()>0.8:
-        var x = randi()%draw.size[0]
-        var y = randi()%draw.size[1]
-        var id = get_cell_id(x,y)
+    
+    var x = randi()%draw.size[0]
+    var y = randi()%draw.size[1]
+    var id = get_cell_id(x,y)
+    if id == Cell.Id.AIR:
+        set_cell_id(x, y, Cell.Id.SMOKE)
+    elif randf()>0.8:
         if Cell.is_flammable(id):
             set_cell_id(x, y, Cell.Id.FIRE)
         elif Cell.is_ground(id) && randf()>0.95:
             set_cell_id(x, y, Cell.Id.WORM)
+        
 
 func _process(_delta):
     update_simulation()

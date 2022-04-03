@@ -17,7 +17,7 @@ func draw():
     return _col
  
 func update(cells, _light, x: int, y: int):
-    if randi()%500==0:
+    if randi()%100==0:
         if cells.get_cell_id(x, y-1) == Id.AIR:
             cells.kill(x,y)
             return
@@ -39,5 +39,5 @@ func update(cells, _light, x: int, y: int):
     elif neighborcell == Id.FIRE:
         cells.kill(x,y)
         cells.kill(px,py)
-    elif (neighborcell == Id.DIRT || neighborcell == Id.STONE) && rand_range(0,1)>0.9:
+    elif (neighborcell == Id.STONE) && rand_range(0,1)>0.9:
         cells.set_cell_id(px, py, Id.SAND)

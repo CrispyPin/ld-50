@@ -22,6 +22,26 @@ var type := "tree_1" setget set_type
 var t_width: int
 var t_height: int
 
+var dying: bool = false
+
+func kill(cells, x, y):
+    mark_near_dying(cells, x, y)
+    cells.set_cell_id(x,y,Id.AIR)
+
+func mark_near_dying(cells, x, y):
+    for dir in [[0, -1], [-1, 0], [1, 0], [0, 1]]:
+        var px = x + dir[0]
+        var py = y + dir[1]
+        var near = cells.get_cell(px,py)
+        if is_plant(near.getId()):
+            #print("mark: ",px,", ",py)
+            near.mark_dying()
+            
+        
+        
+func mark_dying():
+    dying = true
+
 func _init():
 	set_type(type)
 	grow_offsets.shuffle()
@@ -44,6 +64,10 @@ func draw():
 
 func update(cells, light, x: int, y: int):
 	if landed:
+		if dying:
+			grow_offsets = []
+			if randf()>0.95:
+				cells.kill(x,y)
 		if grow_offsets:
 			grow(cells, light, x, y)
 		return

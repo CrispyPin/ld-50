@@ -53,5 +53,5 @@ func update(cells, _light, x: int, y: int):
 		if randf()>0.1:
 			cells.set_cell_id(x, y, Id.STONE)
 		else:
-			cells.set_cell_id(x, y, Id.SAND)
+			cells.set_cell_id(x, y, Id.AIR)
             
