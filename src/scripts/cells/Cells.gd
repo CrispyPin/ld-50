@@ -7,7 +7,6 @@ var cells = []
 var light = []
 var draw
 
-# get id at coordinates
 
 func bounds_check(x: int, y: int) -> bool:
     return !(x<0 || y<0 || x>=draw.size[0] || y>=draw.size[1])
@@ -19,43 +18,47 @@ func get_cell_id(x: int, y: int) -> int:
         print("Get cell id invalid coordinate", x, y)
         return Cell.Id.AIR
 
+
 func kill(x: int, y: int):
     get_cell(x,y).kill(self,x,y)
+
 
 func set_cell_id_safe(x: int, y: int, id):
     if get_cell_id(x,y)!=Cell.Id.WALL:
         set_cell(x,y,make_cell_from_id(id))
 
+
 func set_cell_id(x: int, y: int, id):
     set_cell(x,y,make_cell_from_id(id))
-    
+
+
 # creates a new cell with specified id
 func make_cell_from_id(id): # -> Cell
-    if id == Cell.Id.WALL:
-        return WallCell.new()
-    if id == Cell.Id.WATER:
-        return WaterCell.new()
-    if id == Cell.Id.SAND:
-        return SandCell.new()
-    if id == Cell.Id.FISH:
-        return FishCell.new()
-    if id == Cell.Id.KELP:
-        return KelpCell.new()
-    if id == Cell.Id.TREE:
-        return TreeCell.new()
-    if id == Cell.Id.TREE2:
-        var c = TreeCell.new()
-        c.type = "tree_2"
-        return c
-    if id == Cell.Id.FLOWER1:
-        var c = TreeCell.new()
-        c.type = "flower_1"
-        return c
-    else:
-        if !id == Cell.Id.AIR:
-            print("INVALID CELL ID REQUESTED:")
-            print(id)
-        return AirCell.new()
+    match id:
+        Cell.Id.WALL:
+            return WallCell.new()
+        Cell.Id.WATER:
+            return WaterCell.new()
+        Cell.Id.SAND:
+            return SandCell.new()
+        Cell.Id.FISH:
+            return FishCell.new()
+        Cell.Id.KELP:
+            return KelpCell.new()
+        Cell.Id.TREE:
+            return TreeCell.new()
+        Cell.Id.TREE2:
+            var c = TreeCell.new()
+            c.type = "tree_2"
+            return c
+        Cell.Id.FLOWER1:
+            var c = TreeCell.new()
+            c.type = "flower_1"
+            return c
+        _:
+            if id != Cell.Id.AIR:
+                print("INVALID CELL ID REQUESTED:", id)
+            return AirCell.new()
 
 func get_cell(x: int, y: int):
     #return cells[x%draw.size[0]][y%draw.size[1]]
@@ -69,7 +72,7 @@ func set_cell(x: int, y: int, cell):
     if bounds_check(x,y):
         cells[x][y] = cell
         redraw(x,y)
-        
+
 
 func swap_cell(x1: int, y1: int, x2: int, y2: int):
     if !bounds_check(x1,y1) || !bounds_check(x2,y2):
@@ -81,10 +84,8 @@ func swap_cell(x1: int, y1: int, x2: int, y2: int):
 func _ready():
     draw = get_parent()
 
-    
     yield(draw, "ready")
 
-    
     for x in range(draw.size[0]):
         cells.append([])
         light.append([])
@@ -138,19 +139,17 @@ func _update_light_inner(x: int, y: int, unconditional_recursion: bool):
     var dx = 1
     
     
-    var x_above = x-dx
-    var y_above = y-1
+    var x_above = x - dx
+    var y_above = y - 1
     
-    var x_below = x+dx
-    var y_below = y+1
+    var x_below = x + dx
+    var y_below = y + 1
     
     var old_light = light[x][y]
     var new_light = 0.0
     if id == Cell.Id.WALL:
         new_light = 1.0
     else:
-        
-        
         var id_above = get_cell_id(x_above,y_above)
         
         var dl = 0.7
@@ -162,12 +161,6 @@ func _update_light_inner(x: int, y: int, unconditional_recursion: bool):
         
         new_light = light[x_above][y_above] * dl
         
-        
-        
-        #if new_light!=old_light:
-        #    pass
-        
-        # cell below
     light[x][y] = new_light
     _update_color(x, y)
     if bounds_check(x_below, y_below) and (old_light != new_light or unconditional_recursion):
@@ -182,7 +175,7 @@ func _update_color(x: int, y: int):
     var b = col.b*col.b;
             
     
-    var min_l = 0.01
+    var min_l = 0.05
     var l = (light[x][y]+min_l)/(1.0+min_l)
     # linear color space light
     r = r * l
@@ -202,11 +195,11 @@ func _process(_delta):
         var x = randi()%draw.size[0]
         var y = randi()%draw.size[1]
         cells[x][y].update(self, light, x, y)
+
     #for i in range(draw.size[0]*5):
     #    var x = randi()%draw.size[0]
     #    var y = randi()%draw.size[1]
     #   _update_light(x,y)
-
 
     #for x in range(draw.size[0]):
     #    for y in range(draw.size[1]):

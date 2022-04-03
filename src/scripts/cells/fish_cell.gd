@@ -1,16 +1,11 @@
 extends Cell
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 class_name FishCell
 
 var _col: Color
 
 var dying: bool = false
 
-# Called when the node enters the scene tree for the first time.
+
 func _init():
     self._col = Color.from_hsv(rand_range(0,0.1),1,1)#Color(rand_range(0.6,0.8),rand_range(0.6,0.8),rand_range(0.4,0.6),1)
 
@@ -35,15 +30,9 @@ func update(cells, _light, x: int, y: int):
     var py = y + dy
     
     
-        
     
     var neighborCell = cells.get_cell_id(px,py)
     
-    
-    
-    #var neighborCell = cells.getCell(x+dx,y+1)
-    
-    #if (neighborCell is AirCell || neighborCell is WaterCell):
     if (neighborCell == Id.FISH):
         cells.kill(px,py)
         dx*=-1;
@@ -60,17 +49,3 @@ func update(cells, _light, x: int, y: int):
         cells.set_cell(px,py,self)
     else:
         dx*=-1;
-        
-    #if light[x + dx][py]>light[x - dx][py]:
-    #    dx*=-1;
-        
-        
-            
-            
-        
-        
-        #cells[x][y] = AirCell.new()   
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#    pass
