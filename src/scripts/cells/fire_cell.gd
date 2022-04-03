@@ -16,6 +16,8 @@ func kill(cells, x, y):
 	cells.set_cell_id(x,y,Id.SMOKE if rand_range(0,1)>0.5 else Id.AIR)
 
 func update(cells, _light, x: int, y: int):
+    if randi()%10!=0:
+        return
     var dx = randi()%3-1;
     var dy = randi()%3-1
     if dx == 0 && dy == 0:
@@ -30,5 +32,5 @@ func update(cells, _light, x: int, y: int):
     
     if Cell.is_flammable(id):
         cells.set_cell_id(px, py, Id.FIRE)
-    elif (r>0.6 && id != Id.AIR) || r > 0.95:
+    elif id == Id.WATER || (r>0.6 && id != Id.AIR) || r > 0.95:
         kill(cells,x,y)
