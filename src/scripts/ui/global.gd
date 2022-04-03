@@ -1,11 +1,11 @@
 extends Node
 
-const PAUSE_IN_MENU  = true
+const PAUSE_IN_MENU = true
 const CURSOR_MODE = Input.MOUSE_MODE_HIDDEN
 const INSTANT_START = true
 
 
-const DEBUG_SETTINGS = true
+const DEBUG_SETTINGS = false
 const SETTINGS_PATH = "user://settings.json"
 const SETTINGS_DEF = {
 	"update_rate": {
@@ -14,7 +14,7 @@ const SETTINGS_DEF = {
 		"type": "number",
 		"default": 20,
 		"min": 1,
-		"max": 100,
+		"max": 60,
 		"step": 5,
 	},
 #	"example_toggle": {
