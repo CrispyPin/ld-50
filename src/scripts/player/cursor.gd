@@ -1,6 +1,5 @@
 extends TextureRect
 
-
 export var t_small: Texture
 export var t_large: Texture
 

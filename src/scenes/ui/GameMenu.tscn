@@ -10,9 +10,6 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchor_right = 1.0
@@ -24,24 +21,24 @@ __meta__ = {
 [node name="VSplitContainer" type="VSplitContainer" parent="PanelContainer"]
 margin_left = 2.0
 margin_top = 2.0
-margin_right = 1022.0
+margin_right = 1278.0
 margin_bottom = 307.0
 
 [node name="Title" parent="PanelContainer/VSplitContainer" instance=ExtResource( 5 )]
-margin_right = 1020.0
+margin_right = 1276.0
 margin_bottom = 70.0
 
 [node name="PanelContainer" parent="PanelContainer/VSplitContainer/Title" index="0"]
-margin_right = 1016.0
+margin_right = 1272.0
 margin_bottom = 66.0
 
 [node name="Label" parent="PanelContainer/VSplitContainer/Title/PanelContainer" index="0"]
-margin_right = 1006.0
+margin_right = 1262.0
 margin_bottom = 56.0
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VSplitContainer"]
 margin_top = 82.0
-margin_right = 1020.0
+margin_right = 1276.0
 margin_bottom = 305.0
 custom_constants/margin_right = 4
 custom_constants/margin_top = 4
@@ -51,7 +48,7 @@ custom_constants/margin_bottom = 4
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VSplitContainer/MarginContainer"]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 1016.0
+margin_right = 1272.0
 margin_bottom = 219.0
 theme = ExtResource( 2 )
 __meta__ = {
@@ -65,11 +62,11 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 0.0
-margin_right = 1012.0
+margin_right = 1268.0
 margin_bottom = 69.0
 
 [node name="Button" parent="PanelContainer/VSplitContainer/MarginContainer/VBoxContainer/Resume" index="0"]
-margin_right = 1008.0
+margin_right = 1264.0
 text = "Resume"
 
 [node name="Settings" parent="PanelContainer/VSplitContainer/MarginContainer/VBoxContainer" instance=ExtResource( 6 )]
@@ -79,11 +76,11 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 73.0
-margin_right = 1012.0
+margin_right = 1268.0
 margin_bottom = 142.0
 
 [node name="Button" parent="PanelContainer/VSplitContainer/MarginContainer/VBoxContainer/Settings" index="0"]
-margin_right = 1008.0
+margin_right = 1264.0
 text = "Settings"
 
 [node name="Exit" parent="PanelContainer/VSplitContainer/MarginContainer/VBoxContainer" instance=ExtResource( 6 )]
@@ -93,11 +90,11 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 146.0
-margin_right = 1012.0
+margin_right = 1268.0
 margin_bottom = 215.0
 
 [node name="Button" parent="PanelContainer/VSplitContainer/MarginContainer/VBoxContainer/Exit" index="0"]
-margin_right = 1008.0
+margin_right = 1264.0
 text = "Exit"
 
 [connection signal="pressed" from="PanelContainer/VSplitContainer/MarginContainer/VBoxContainer/Resume/Button" to="." method="_on_ResumeButton_pressed"]

@@ -24,20 +24,20 @@ __meta__ = {
 [node name="VSplitContainer" type="VSplitContainer" parent="PanelContainer"]
 margin_left = 2.0
 margin_top = 2.0
-margin_right = 1022.0
-margin_bottom = 380.0
+margin_right = 1278.0
+margin_bottom = 580.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Title" parent="PanelContainer/VSplitContainer" instance=ExtResource( 4 )]
-margin_right = 1020.0
+margin_right = 1276.0
 margin_bottom = 70.0
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VSplitContainer"]
 margin_top = 82.0
-margin_right = 1020.0
-margin_bottom = 378.0
+margin_right = 1276.0
+margin_bottom = 578.0
 custom_constants/margin_right = 4
 custom_constants/margin_top = 4
 custom_constants/margin_left = 4
@@ -46,8 +46,8 @@ custom_constants/margin_bottom = 4
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VSplitContainer/MarginContainer"]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 1016.0
-margin_bottom = 292.0
+margin_right = 1272.0
+margin_bottom = 492.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -59,11 +59,11 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 0.0
-margin_right = 1012.0
+margin_right = 1268.0
 margin_bottom = 69.0
 
 [node name="Button" parent="PanelContainer/VSplitContainer/MarginContainer/VBoxContainer/Play" index="0"]
-margin_right = 1008.0
+margin_right = 1264.0
 text = "Play"
 
 [node name="Settings" parent="PanelContainer/VSplitContainer/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
@@ -73,11 +73,11 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 73.0
-margin_right = 1012.0
+margin_right = 1268.0
 margin_bottom = 142.0
 
 [node name="Button" parent="PanelContainer/VSplitContainer/MarginContainer/VBoxContainer/Settings" index="0"]
-margin_right = 1008.0
+margin_right = 1264.0
 text = "Settings"
 
 [node name="Info" parent="PanelContainer/VSplitContainer/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
@@ -87,11 +87,11 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 146.0
-margin_right = 1012.0
+margin_right = 1268.0
 margin_bottom = 215.0
 
 [node name="Button" parent="PanelContainer/VSplitContainer/MarginContainer/VBoxContainer/Info" index="0"]
-margin_right = 1008.0
+margin_right = 1264.0
 text = "About"
 
 [node name="Exit" parent="PanelContainer/VSplitContainer/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
@@ -101,11 +101,11 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 219.0
-margin_right = 1012.0
+margin_right = 1268.0
 margin_bottom = 288.0
 
 [node name="Button" parent="PanelContainer/VSplitContainer/MarginContainer/VBoxContainer/Exit" index="0"]
-margin_right = 1008.0
+margin_right = 1264.0
 text = "Exit"
 
 [connection signal="pressed" from="PanelContainer/VSplitContainer/MarginContainer/VBoxContainer/Play/Button" to="." method="_on_PlayButton_pressed"]
