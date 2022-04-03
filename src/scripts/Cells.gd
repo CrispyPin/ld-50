@@ -32,7 +32,7 @@ func set_cell_id(x: int, y: int, id, args=[]):
 
 
 # creates a new cell with specified id
-func make_cell_from_id(id, args=[]): # -> Cell
+static func make_cell_from_id(id, args=[]): # -> Cell
     match id:
         Cell.Id.WALL:
             return WallCell.new()

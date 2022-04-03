@@ -1,0 +1,6 @@
+[gd_scene format=2]
+
+[node name="Button" type="Button"]
+margin_right = 48.0
+margin_bottom = 40.0
+text = "Cell Name"

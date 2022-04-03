@@ -1,11 +1,11 @@
 extends Node
 
-const PAUSE_IN_MENU  = true
+const PAUSE_IN_MENU = true
 const CURSOR_MODE = Input.MOUSE_MODE_HIDDEN
 const INSTANT_START = true
 
 
-const DEBUG_SETTINGS = true
+const DEBUG_SETTINGS = false
 const SETTINGS_PATH = "user://settings.json"
 const SETTINGS_DEF = {
 	"update_rate": {
@@ -14,8 +14,17 @@ const SETTINGS_DEF = {
 		"type": "number",
 		"default": 20,
 		"min": 1,
-		"max": 100,
+		"max": 60,
 		"step": 5,
+	},
+	"pixel_size": {
+		"name": "World Scale",
+		"flags": [],
+		"type": "number",
+		"default": 4,
+		"min": 2,
+		"max": 12,
+		"step": 1,
 	},
 #	"example_toggle": {
 #		"name": "Toggle (main menu)",

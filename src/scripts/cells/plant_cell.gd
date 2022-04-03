@@ -61,7 +61,9 @@ func update(cells, light, x: int, y: int):
 		cells.swap_cell(x, y, x, y+1)
 
 
-func grow(cells, _light, x: int, y: int):
+func grow(cells, light, x: int, y: int):
+	if light[x][y] < randf():
+		return
 	var delta = grow_offsets.pop_front()
 	var dx = delta[0]
 	var dy = delta[1]
