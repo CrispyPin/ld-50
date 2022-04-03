@@ -1,5 +1,7 @@
 extends Node
 
+signal setting_changed
+
 const PAUSE_IN_MENU = true
 const CURSOR_MODE = Input.MOUSE_MODE_HIDDEN
 const INSTANT_START = true
@@ -14,7 +16,7 @@ const SETTINGS_DEF = {
 		"type": "number",
 		"default": 20,
 		"min": 1,
-		"max": 60,
+		"max": 40,
 		"step": 5,
 	},
 	"pixel_size": {
@@ -73,10 +75,12 @@ func _ready() -> void:
 	_init_settings()
 	load_settings()
 	settings_loaded = true
+	emit_signal("setting_changed")
 
 
 func set_setting(key, val):
 	settings[key] = val
+	emit_signal("setting_changed")
 	if DEBUG_SETTINGS:
 		print("Settings changed. ", key, ": ", val)
 	save_settings()

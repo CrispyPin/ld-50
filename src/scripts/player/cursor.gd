@@ -5,6 +5,7 @@ export var t_small: Texture
 export var t_large: Texture
 
 var pixel_pos
+var psize := 4
 var cell_type = Cell.Id.FUNGUS
 var large_mode := false
 
@@ -12,14 +13,14 @@ onready var draw = $"../Draw"
 onready var cells = $"../Draw/Cells"
 
 func _ready():
-	pass
+	Global.connect("setting_changed", self, "_setting_changed")
+	_setting_changed()
 
 func _process(_delta):
-	var psize = Vector2(1, 1) * Global.settings["pixel_size"]
-	rect_size = 3 * psize
+	rect_size = 3 * Vector2(psize, psize)
 	
-	rect_position = snap_position(get_viewport().get_mouse_position() - psize, psize.x)
-	pixel_pos = screen_to_pixel(get_viewport().get_mouse_position(), psize.x)
+	rect_position = snap_position(get_viewport().get_mouse_position() - Vector2(psize, psize), psize)
+	pixel_pos = screen_to_pixel(get_viewport().get_mouse_position(), psize)
 	
 	if Input.get_mouse_button_mask() == BUTTON_LEFT:
 		if large_mode:
@@ -59,3 +60,6 @@ func screen_to_pixel(pos: Vector2, grid_size) -> Array:
 
 func pos_valid(xy) -> bool:
 	return xy[0] > 0 and xy[1] > 0 and xy[0] < draw.size[0] -1 and xy[1] < draw.size[1] -1
+
+func _setting_changed():
+	psize = Global.settings["pixel_size"]

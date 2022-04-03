@@ -65,7 +65,6 @@ static func is_plant(id) -> bool:
 		Id.TREE_1,
 		Id.TREE_2,
 		Id.FLOWER_1,
-        Id.FUNGUS,
 	]
 
 static func is_ground(id) -> bool:
