@@ -55,6 +55,11 @@ _global_script_classes=[ {
 "path": "res://scripts/cells/kelp_cell.gd"
 }, {
 "base": "Cell",
+"class": "LavaCell",
+"language": "GDScript",
+"path": "res://scripts/cells/lava_cell.gd"
+}, {
+"base": "Cell",
 "class": "PlantCell",
 "language": "GDScript",
 "path": "res://scripts/cells/plant_cell.gd"
@@ -99,6 +104,7 @@ _global_script_class_icons={
 "FishCell": "",
 "GrassCell": "",
 "KelpCell": "",
+"LavaCell": "",
 "PlantCell": "",
 "SandCell": "",
 "SmokeCell": "",
