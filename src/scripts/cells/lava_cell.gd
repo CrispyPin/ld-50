@@ -20,13 +20,11 @@ func draw():
 	return _col
  
 func update(cells, _light, x: int, y: int):
-
-	
 	var dx = randi()%3-1;
 	var dy = 1
 	if dx != 0:
 		dy = 0
-		
+	
 	var px = x + dx
 	var py = y + dy
 	
@@ -34,6 +32,7 @@ func update(cells, _light, x: int, y: int):
 	
 	if is_gas(neighborcell):
 		cells.swap_cell(x, y, px, py)
+		return
 	
 	var solidify = false
 	for dir in offsets:
