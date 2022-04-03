@@ -17,6 +17,15 @@ const SETTINGS_DEF = {
 		"max": 60,
 		"step": 5,
 	},
+	"pixel_size": {
+		"name": "World Scale",
+		"flags": [],
+		"type": "number",
+		"default": 4,
+		"min": 2,
+		"max": 12,
+		"step": 1,
+	},
 #	"example_toggle": {
 #		"name": "Toggle (main menu)",
 #		"flags": ["main_menu_only"],

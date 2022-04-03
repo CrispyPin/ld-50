@@ -7,12 +7,14 @@ onready var draw = $"../Draw"
 onready var cells = $"../Draw/Cells"
 
 func _ready():
-	rect_size = Vector2(4, 4)
-	rect_size *= 3
+	pass
 
 func _process(_delta):
-	rect_position = snap_position(get_viewport().get_mouse_position() - Vector2(4,4), 4)
-	pixel_pos = screen_to_pixel(get_viewport().get_mouse_position(), 4)
+	var psize = Vector2(1, 1) * Global.settings["pixel_size"]
+	rect_size = 3 * psize
+	
+	rect_position = snap_position(get_viewport().get_mouse_position() - psize, psize.x)
+	pixel_pos = screen_to_pixel(get_viewport().get_mouse_position(), psize.x)
 	if Input.get_mouse_button_mask() == BUTTON_LEFT:
 		if pixel_pos[0] > 0 and pixel_pos[1] > 0 \
 			and pixel_pos[0] < draw.size[0] -1 \

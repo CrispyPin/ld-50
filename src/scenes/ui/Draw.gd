@@ -45,13 +45,7 @@ func _ready():
 
     image.fill(Color(0,0,0,1))
     
-
-
-    
     print(image)
-    
-    
-    
     
 
     _create_update_texture()
@@ -61,17 +55,8 @@ func _ready():
     
     #pass # Replace with function body.
 func _create_update_texture():
-
-    
-    
     texture.create_from_image(self.image)
     texture.flags = 0
-
-    pass   
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#    pass
 
 
 func set_pixel(x: int, y: int, c: Color):
@@ -84,7 +69,7 @@ func set_pixel(x: int, y: int, c: Color):
 
 func _process(_delta):
     #self.set_pixel ( rand_range(0,size[0]), rand_range(0,size[0]), Color(rand_range(0,1),rand_range(0,1),rand_range(0,1),1))
-    
+    pixel_size = [Global.settings["pixel_size"],Global.settings["pixel_size"]]
     if image_changed:
         _create_update_texture()
     
