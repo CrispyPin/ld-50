@@ -1,6 +1,4 @@
 extends Node
-
-
 class_name Cells
 
 var cells = []
@@ -37,22 +35,26 @@ func make_cell_from_id(id): # -> Cell
     match id:
         Cell.Id.WALL:
             return WallCell.new()
+        Cell.Id.STONE:
+            return StoneCell.new()
         Cell.Id.WATER:
             return WaterCell.new()
         Cell.Id.SAND:
             return SandCell.new()
+        Cell.Id.DIRT:
+            return DirtCell.new()
         Cell.Id.FISH:
             return FishCell.new()
         Cell.Id.KELP:
             return KelpCell.new()
-        Cell.Id.TREE:
-            return TreeCell.new()
-        Cell.Id.TREE2:
-            var c = TreeCell.new()
+        Cell.Id.TREE_1:
+            return PlantCell.new()
+        Cell.Id.TREE_2:
+            var c = PlantCell.new()
             c.type = "tree_2"
             return c
-        Cell.Id.FLOWER1:
-            var c = TreeCell.new()
+        Cell.Id.FLOWER_1:
+            var c = PlantCell.new()
             c.type = "flower_1"
             return c
         _:
@@ -108,13 +110,18 @@ func _ready():
             else:
                 cells[x].append(WallCell.new())
     
+    for x in range(1, draw.size[0]-1):
+        set_cell_id(x, draw.size[1]-2, Cell.Id.STONE)
+        set_cell_id(x, draw.size[1]-3, Cell.Id.STONE)
+        set_cell_id(x, draw.size[1]-4, Cell.Id.DIRT)
+    
     for x in range(20, 60, 2):
         set_cell(x, 50, KelpCell.new())
 
-    set_cell(150,40,TreeCell.new())
-    set_cell(170,40,TreeCell.new())
-    set_cell_id(185,40,Cell.Id.TREE2)
-    set_cell_id(135,40,Cell.Id.FLOWER1)
+    set_cell_id(135,40,Cell.Id.FLOWER_1)
+    set_cell_id(150,40,Cell.Id.TREE_1)
+    set_cell_id(170,40,Cell.Id.TREE_1)
+    set_cell_id(185,40,Cell.Id.TREE_2)
 
     
     for x in range(draw.size[0]):
@@ -137,7 +144,6 @@ func _update_light_inner(x: int, y: int, unconditional_recursion: bool):
     var id = get_cell_id(x,y)
     
     var dx = 1
-    
     
     var x_above = x - dx
     var y_above = y - 1

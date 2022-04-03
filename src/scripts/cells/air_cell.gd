@@ -1,6 +1,4 @@
 extends Cell
-
-
 class_name AirCell
 
 var _col: Color

@@ -1,10 +1,10 @@
 extends Cell
-class_name TreeCell
+class_name PlantCell
 
 const type_ids = {
-	"tree_1": Id.TREE,
-	"tree_2": Id.TREE2,
-	"flower_1": Id.FLOWER1,
+	"tree_1": Id.TREE_1,
+	"tree_2": Id.TREE_2,
+	"flower_1": Id.FLOWER_1,
 }
 const x_offsets = {
 	"tree_1": 6,
@@ -50,7 +50,7 @@ func update(cells, light, x: int, y: int):
 
 	# falling logic
 	var cell_below = cells.get_cell_id(x, y + 1)
-	if cell_below in [Id.SAND, Id.WALL]:
+	if is_ground(cell_below):
 		landed = true
 	elif cell_below in type_ids.values():# is plant
 		cells.set_cell(x, y, AirCell.new())

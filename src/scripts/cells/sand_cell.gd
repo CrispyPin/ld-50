@@ -16,7 +16,6 @@ func draw():
 func update(cells, _light, x: int, y: int):
     var dx = randi()%3-1;
     
-    
     var neighborCell = cells.get_cell_id(x+dx,y+1)
     
     if (neighborCell == Id.AIR || neighborCell == Id.WATER):
