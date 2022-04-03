@@ -11,7 +11,7 @@ func getId():
 
 func draw():
     return _col
- 
+
 func kill(cells, x, y):
     if randf()>0.5:
         cells.set_cell_id(x,y,Id.AIR)
@@ -25,9 +25,9 @@ func update(cells, _light, x: int, y: int):
     var dy = -1
     if dx != 0:
         dy = 0
-    
+
     var neighborcell = cells.get_cell_id(x+dx,y+dy)
-    
-    
+
+
     if neighborcell == Id.AIR:
         cells.swap_cell(x, y, x+dx, y+dy)

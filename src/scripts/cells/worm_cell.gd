@@ -24,7 +24,7 @@ func getId():
 
 func draw():
 	return _col
- 
+
 func update(cells, _light, x: int, y: int):
 	still_time += 1
 	if still_time >= 15:
@@ -37,7 +37,7 @@ func update(cells, _light, x: int, y: int):
 		cells.swap_cell(x, y, x, y+1)
 		still_time = 0
 		return
-	
+
 	directions.shuffle()
 	for d in directions:
 		var dx = d[0]
@@ -45,11 +45,11 @@ func update(cells, _light, x: int, y: int):
 		var next_cell = cells.get_cell_id(x+dx, y+dy)
 		if !can_move(next_cell):
 			continue
-		
+
 		# this is the only cell in the worm
 		if tail_invalid(cells):
 			cells.set_cell_id(x+dx, y+dy, Id.WORM, {"is_head": true, "next_segment": [x, y]})
-			
+
 		elif can_eat(next_cell) and randf() > 0.5:
 			cells.set_cell_id(x+dx, y+dy, Id.WORM, {"is_head": true, "next_segment": next_segment})
 		else:

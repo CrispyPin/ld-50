@@ -25,7 +25,7 @@ func getId():
 func draw():
 #	return _col
 	return Color(0,1,1)
- 
+
 func update(cells, light, x: int, y: int):
 	if !landed:
 		var cell_below = cells.get_cell_id(x, y + 1)
@@ -37,17 +37,17 @@ func update(cells, light, x: int, y: int):
 
 	if light[x][y] > randf()*0.5 or randf() < 0.75:
 		return
-	
+
 	var offset = grow_offsets[randi()%8]
 	var target = cells.get_cell_id(x + offset.x, y + offset.y)
 	if !is_fluid(target):
 		return
-	
+
 	var surface = grow_offsets[randi()%4] + offset
 	if !is_ground(cells.get_cell_id(x + surface.x, y + surface.y)):
 		return
-	
+
 	cells.set_cell_id(x + offset.x, y + offset.y, Id.FUNGUS)
 	var new = cells.get_cell(x + offset.x, y + offset.y)
 	new.landed = true
-	
+

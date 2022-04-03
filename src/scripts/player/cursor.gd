@@ -18,10 +18,10 @@ func _ready():
 
 func _process(_delta):
 	rect_size = 3 * Vector2(psize, psize)
-	
+
 	rect_position = snap_position(get_viewport().get_mouse_position() - Vector2(psize, psize), psize)
 	pixel_pos = screen_to_pixel(get_viewport().get_mouse_position(), psize)
-	
+
 	if Input.get_mouse_button_mask() == BUTTON_LEFT:
 		if large_mode:
 			for x in range(-1,2):
@@ -32,7 +32,7 @@ func _process(_delta):
 		else:
 			if pos_valid(pixel_pos):
 				cells.set_cell_id(pixel_pos[0], pixel_pos[1], cell_type)
-	
+
 	elif Input.get_mouse_button_mask() == BUTTON_RIGHT:
 		var new_type = cells.get_cell_id(pixel_pos[0], pixel_pos[1])
 		if !(new_type in [Cell.Id.WALL, Cell.Id.AIR]):

@@ -36,9 +36,9 @@ func mark_near_dying(cells, x, y):
         if is_plant(near.getId()):
             #print("mark: ",px,", ",py)
             near.mark_dying()
-            
-        
-        
+
+
+
 func mark_dying():
     dying = true
 
@@ -52,7 +52,7 @@ func set_type(new):
 	t_height = Textures.t[type].get_height()
 	tex_x = x_offsets[type]
 	tex_y = t_height - 1
-	
+
 
 func getId():
 	return type_ids[type]
@@ -93,24 +93,24 @@ func grow(cells, light, x: int, y: int):
 	var dy = delta[1]
 	var target_x = x + dx
 	var target_y = y + dy
-	
+
 	# check if in bounds of texture
 	if tex_y + dy < 0 \
 		or tex_y + dy >= t_width \
 		or tex_x + dx >= t_height \
 		or tex_x + dx < 0:
 			return
-	
+
 	# check if texture has cells there
 	var pixel = Textures.t[type].get_pixel(tex_x + dx, tex_y + dy)
 	if pixel.a == 0:
 		return
-	
+
 	# check if target location is free
 	var target_cell = cells.get_cell_id(target_x, target_y)
 	if !(target_cell in [Id.AIR]):
 		return
-	
+
 	cells.set_cell_id(target_x, target_y, type_ids[type], {
 		"tex_x": tex_x + dx,
 		"tex_y": tex_y + dy,

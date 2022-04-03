@@ -26,12 +26,12 @@ enum Id {
 
 # is it basically just water
 static func is_moist(id) -> bool:
-    return id in [ 
+    return id in [
         Id.WATER,
         Id.SMOKE,
     ]
 static func is_liquid(id) -> bool:
-    return id in [ 
+    return id in [
         Id.WATER,
         Id.LAVA,
     ]
@@ -41,19 +41,19 @@ static func is_fluid(id) -> bool:
 
 
 static func is_gas(id) -> bool:
-    return id in [ 
+    return id in [
         Id.AIR,
         Id.SMOKE,
     ]
 
 static func is_flammable(id) -> bool:
-    return id in [ 
-        Id.GRASS, 
-        Id.TREE_1, 
-        Id.TREE_2, 
-        Id.FLOWER_1, 
-        Id.WORM, 
-        Id.FISH, 
+    return id in [
+        Id.GRASS,
+        Id.TREE_1,
+        Id.TREE_2,
+        Id.FLOWER_1,
+        Id.WORM,
+        Id.FISH,
 		Id.FUNGUS,
     ]
 

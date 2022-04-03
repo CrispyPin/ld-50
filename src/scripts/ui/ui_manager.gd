@@ -21,6 +21,8 @@ func _process(_delta):
 			open_game_menu()
 		elif current_menu == "Game":
 			close_game_menu()
+		elif current_menu == "Settings":
+			set_menu("Game")
 
 
 func open_game_menu():

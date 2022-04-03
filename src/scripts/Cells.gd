@@ -121,22 +121,22 @@ func _ready():
         for y in range(draw.size[1]):
             var r = rand_range(0,1)
             light[x].append(0.0)
-            
+
             if x!=0 && y!=0 && x!=draw.size[0]-1 && y!=draw.size[1]-1:
                 var u = (float(x)/draw.size[0]-0.5)*2.0
                 var v = (float(y)/draw.size[1]-0.5)*2.0
-                
+
                 #v+=rand_range(-1,1)*0.05
-                
+
                 var sd = sin(-u*2.0)*0.5+0.40-v
-                
+
                 var sd_overhang = cos(-u*2.0+2.0)*0.5+0.20-v
-                
+
                 if sd_overhang>sd+0.20 || u < -0.5:
                     sd_overhang = 1
-                    
+
                 var sd_overhang_abs = abs(sd_overhang)-0.2
-                
+
                 var sd_water = 0.2-v
                 if sd_overhang_abs<0:
                     if sd_overhang<0:
@@ -146,7 +146,7 @@ func _ready():
                 elif sd<0:
                     if sd<-0.4:
                         if randf()>0.8:
-                            cells[x].append(LavaCell.new())  
+                            cells[x].append(LavaCell.new())
                         else:
                             cells[x].append(StoneCell.new())
                         #if r>0.999:
@@ -172,15 +172,15 @@ func _ready():
                         cells[x].append(WaterCell.new())
             else:
                 cells[x].append(WallCell.new())
-    
+
     for x in range(1, draw.size[0]-1):
         set_cell_id(x, draw.size[1]-2, Cell.Id.STONE)
         set_cell_id(x, draw.size[1]-3, Cell.Id.STONE)
         set_cell_id(x, draw.size[1]-4, Cell.Id.DIRT)
-    
+
     for x in range(20, 60, 2):
         set_cell(x, 50, KelpCell.new())
-        
+
     for x in range(50, 90, 5):
         set_cell(x, 20, GrassCell.new())
 
@@ -192,13 +192,13 @@ func _ready():
     set_cell_id(140,40,Cell.Id.GRASS)
     set_cell_id(79,50,Cell.Id.FUNGUS)
 
-    
+
     for x in range(draw.size[0]):
         _update_light(x,0)
     for y in range(draw.size[1]):
         _update_light(0,y)
-    
-    #for y in range(draw.size[1]):         
+
+    #for y in range(draw.size[1]):
     #    for x in range(draw.size[0]):
     #        _update_light(x,y)
 
@@ -212,22 +212,22 @@ func _update_light(x: int, y: int):
 
 func _update_light_inner(x: int, y: int, unconditional_recursion: bool):
     var id = get_cell_id(x,y)
-    
+
     var dx = 1
-    
+
     var x_above = x - dx
     var y_above = y - 1
-    
+
     var x_below = x + dx
     var y_below = y + 1
-    
+
     var old_light = light[x][y]
     var new_light = 0.0
     if id == Cell.Id.WALL:
         new_light = 1.0
     else:
-        
-        
+
+
         if false:#id == Cell.Id.FIRE:
             new_light = 1.0
         else:
@@ -239,41 +239,41 @@ func _update_light_inner(x: int, y: int, unconditional_recursion: bool):
             elif Cell.is_liquid(id_above):
                 dl = 0.95
             new_light = light[x_above][y_above] * dl
-        
+
     light[x][y] = new_light
     _update_color(x, y)
     if bounds_check(x_below, y_below) and (old_light != new_light or unconditional_recursion):
         _update_light_inner(x_below,y_below,false)
-    
-        
-        
+
+
+
 func _update_color(x: int, y: int):
     var col = cells[x][y].draw()
     var r = col.r*col.r;
     var g = col.g*col.g;
     var b = col.b*col.b;
-    
-    
+
+
     var min_l = 0.05
     var l = (light[x][y]+min_l)/(1.0+min_l)
     # linear color space light
     r = r * l
     g = g * l
     b = b * l
-            
+
     # non-linear color
     r = sqrt(r)
     g = sqrt(g)
     b = sqrt(b)
-        
+
     draw.set_pixel (x, y, Color(r,g,b))
-    
+
 func update_simulation():
     for _i in range(draw.size[0] * Global.settings["update_rate"]):
         var x = randi()%draw.size[0]
         var y = randi()%draw.size[1]
         cells[x][y].update(self, light, x, y)
-    
+
     var x = randi()%draw.size[0]
     var y = randi()%draw.size[1]
     var id = get_cell_id(x,y)
@@ -284,11 +284,11 @@ func update_simulation():
             set_cell_id(x, y, Cell.Id.FIRE)
         elif Cell.is_ground(id) && randf()>0.95:
             set_cell_id(x, y, Cell.Id.WORM)
-        
+
 
 func _process(_delta):
     update_simulation()
-    
+
 
     #for i in range(draw.size[0]*5):
     #    var x = randi()%draw.size[0]

@@ -11,7 +11,7 @@ func getId():
 
 func draw():
     return _col
- 
+
 func kill(cells, x, y):
 	cells.set_cell_id(x,y,Id.SMOKE if rand_range(0,1)>0.25 else Id.AIR)
 
@@ -22,14 +22,14 @@ func update(cells, _light, x: int, y: int):
     var dy = randi()%3-1
     if dx == 0 && dy == 0:
         return
-        
+
     var px = x + dx
     var py = y + dy
-    
+
     var id = cells.get_cell_id(px,py)
-    
+
     var r = rand_range(0,1)
-    
+
     if Cell.is_flammable(id):
         cells.kill(px, py)
         cells.set_cell_id(px, py, Id.FIRE)

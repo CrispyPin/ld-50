@@ -17,20 +17,20 @@ func getId():
 
 func draw():
 	return _col
- 
+
 func update(cells, _light, x: int, y: int):
 	if held_seed != null and randf() < 0.02:
 		var space_below = cells.get_cell_id(x, y+1)
 		if is_fluid(space_below):
 			cells.set_cell_id(x, y+1, held_seed)
 			held_seed = null
-	
+
 	var dy = randi() % 3 - 1;
 	var px = x + dx
 	var py = y + dy
-	
+
 	var neighborCell = cells.get_cell_id(px,py)
-	
+
 	if is_gas(neighborCell):
 		cells.swap_cell(x, y, px, py)
 	else:
