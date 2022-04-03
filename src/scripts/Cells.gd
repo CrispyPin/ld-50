@@ -110,7 +110,10 @@ func _ready():
                 if v>sin(-u*2.0)*0.5+0.40:
                     cells[x].append(SandCell.new())
                 elif v<0.2:
-                    cells[x].append(AirCell.new())
+                    if r>0.999:
+                        cells[x].append(BirdCell.new())
+                    else:
+                        cells[x].append(AirCell.new())
                 else:
                     if r>0.995:
                         cells[x].append(FishCell.new())
@@ -212,12 +215,12 @@ func _process(_delta):
         var y = randi()%draw.size[1]
         cells[x][y].update(self, light, x, y)
     
-    #for _i in range(10):
-    #    var x = randi()%draw.size[0]
-    #    var y = randi()%draw.size[1]
-    #    var id = get_cell_id(x,y)
-    #    if Cell.is_flammable(id):
-    #        set_cell_id(y, x, Cell.Id.FIRE)
+    if rand_range(0,1)>0.8:
+        var x = randi()%draw.size[0]
+        var y = randi()%draw.size[1]
+        var id = get_cell_id(x,y)
+        if Cell.is_flammable(id):
+            set_cell_id(x, y, Cell.Id.FIRE)
     #for i in range(draw.size[0]*5):
     #    var x = randi()%draw.size[0]
     #    var y = randi()%draw.size[1]
