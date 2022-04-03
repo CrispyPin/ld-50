@@ -5,44 +5,53 @@ const CURSOR_MODE = Input.MOUSE_MODE_HIDDEN
 const INSTANT_START = true
 
 
-const DEBUG_SETTINGS = false
+const DEBUG_SETTINGS = true
 const SETTINGS_PATH = "user://settings.json"
 const SETTINGS_DEF = {
-	"example_toggle": {
-		"name": "Toggle (main menu)",
-		"flags": ["main_menu_only"],
-		"tooltip": "tooltip here",
-		"type": "toggle",
-		"default": false
-	},
-	"example_toggle2": {
-		"name": "Toggle",
-		"flags": [],
-		"type": "toggle",
-		"default": false
-	},
-	"example_toggle5": {
-		"name": "Toggle (main menu)",
-		"flags": ["main_menu_only"],
-		"type": "toggle",
-		"default": false
-	},
-	"example_number": {
-		"name": "Number setting",
+	"update_rate": {
+		"name": "Update Rate",
 		"flags": [],
 		"type": "number",
-		"default": 420,
+		"default": 20,
 		"min": 1,
-		"max": 10000,
-		"step": 1#optional
+		"max": 100,
+		"step": 5,
 	},
-	"example_choice": {
-		"name": "Dropdown: ",
-		"flags": [],
-		"type": "choice",
-		"default": 1,
-		"options": ["Option A", "Option B", "Option C"]
-	}
+#	"example_toggle": {
+#		"name": "Toggle (main menu)",
+#		"flags": ["main_menu_only"],
+#		"tooltip": "tooltip here",
+#		"type": "toggle",
+#		"default": false
+#	},
+#	"example_toggle2": {
+#		"name": "Toggle",
+#		"flags": [],
+#		"type": "toggle",
+#		"default": false
+#	},
+#	"example_toggle5": {
+#		"name": "Toggle (main menu)",
+#		"flags": ["main_menu_only"],
+#		"type": "toggle",
+#		"default": false
+#	},
+#	"example_number": {
+#		"name": "Number setting",
+#		"flags": [],
+#		"type": "number",
+#		"default": 420,
+#		"min": 400,
+#		"max": 500,
+#		"step": 1#optional
+#	},
+#	"example_choice": {
+#		"name": "Dropdown: ",
+#		"flags": [],
+#		"type": "choice",
+#		"default": 1,
+#		"options": ["Option A", "Option B", "Option C"]
+#	}
 }
 
 var game_loaded = false

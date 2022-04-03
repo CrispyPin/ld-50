@@ -189,7 +189,7 @@ func _update_color(x: int, y: int):
     var r = col.r*col.r;
     var g = col.g*col.g;
     var b = col.b*col.b;
-            
+    
     
     var min_l = 0.05
     var l = (light[x][y]+min_l)/(1.0+min_l)
@@ -207,7 +207,7 @@ func _update_color(x: int, y: int):
     
 
 func _process(_delta):
-    for _i in range(draw.size[0]*20):
+    for _i in range(draw.size[0] * Global.settings["update_rate"]):
         var x = randi()%draw.size[0]
         var y = randi()%draw.size[1]
         cells[x][y].update(self, light, x, y)
