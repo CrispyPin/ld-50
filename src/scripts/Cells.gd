@@ -107,9 +107,38 @@ func _ready():
             if x!=0 && y!=0 && x!=draw.size[0]-1 && y!=draw.size[1]-1:
                 var u = (float(x)/draw.size[0]-0.5)*2.0
                 var v = (float(y)/draw.size[1]-0.5)*2.0
-                if v>sin(-u*2.0)*0.5+0.40:
-                    cells[x].append(SandCell.new())
-                elif v<0.2:
+                
+                #v+=rand_range(-1,1)*0.05
+                
+                var sd = sin(-u*2.0)*0.5+0.40-v
+                
+                var sd_overhang = cos(-u*2.0+2.0)*0.5+0.20-v
+                
+                if sd_overhang>sd+0.20 || u < -0.5:
+                    sd_overhang = 1
+                    
+                var sd_overhang_abs = abs(sd_overhang)-0.1
+                
+                var sd_water = 0.2-v
+                if sd_overhang_abs<0:
+                    if sd_overhang<0:
+                        cells[x].append(StoneCell.new())
+                    else:
+                        cells[x].append(DirtCell.new())
+                elif sd<0:
+                    if sd<-0.3:
+                        if r>0.999:
+                            cells[x].append(BirdCell.new())
+                        else:
+                            cells[x].append(AirCell.new())
+                    elif sd<-0.2:
+                        cells[x].append(StoneCell.new())
+                    else:
+                        if sd_water<rand_range(-1,1)*0.1:
+                            cells[x].append(SandCell.new())
+                        else:
+                            cells[x].append(DirtCell.new())
+                elif sd_water>0:
                     if r>0.999:
                         cells[x].append(BirdCell.new())
                     else:
@@ -129,6 +158,9 @@ func _ready():
     
     for x in range(20, 60, 2):
         set_cell(x, 50, KelpCell.new())
+        
+    for x in range(50, 90, 5):
+        set_cell(x, 20, GrassCell.new())
 
     set_cell_id(135,40,Cell.Id.FLOWER_1)
     set_cell_id(150,40,Cell.Id.TREE_1)
@@ -171,14 +203,16 @@ func _update_light_inner(x: int, y: int, unconditional_recursion: bool):
     else:
         var id_above = get_cell_id(x_above,y_above)
         
-        var dl = 0.7
-        if id_above == Cell.Id.AIR || id_above == Cell.Id.WALL:
-            dl = 1.0
-            #return light[xp][yp]
-        elif id_above == Cell.Id.WATER:
-            dl = 0.95
-        
-        new_light = light[x_above][y_above] * dl
+        if id_above == Cell.Id.FIRE:
+            new_light = 1.0
+        else:
+            var dl = 0.7
+            if Cell.is_gas(id_above) || id_above == Cell.Id.WALL:
+                dl = 1.0
+                #return light[xp][yp]
+            elif Cell.is_liquid(id_above):
+                dl = 0.95
+            new_light = light[x_above][y_above] * dl
         
     light[x][y] = new_light
     _update_color(x, y)

@@ -14,11 +14,28 @@ enum Id {
 	KELP,
 	GRASS,
 	TREE_1,
-	TREE_2,
+	TREE_2,S
 	FLOWER_1,
     FIRE,
     SMOKE,
 }
+
+# is it basically just water
+static func is_moist(id) -> bool:
+    return id in [ 
+        Id.WATER,
+        Id.SMOKE,
+    ]
+static func is_liquid(id) -> bool:
+    return id in [ 
+        Id.WATER,
+    ]
+    
+static func is_gas(id) -> bool:
+    return id in [ 
+        Id.AIR,
+        Id.SMOKE,
+    ]
 
 static func is_flammable(id) -> bool:
     return id in [ 

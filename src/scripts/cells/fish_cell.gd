@@ -44,7 +44,7 @@ func update(cells, light, x: int, y: int):
     if (neighborCell == Id.FISH):
         cells.kill(px,py)
         dx*=-1;
-    elif (neighborCell == Id.WATER):
+    elif is_moist(neighborCell):
         cells.swap_cell(x, y, px, py)
         dying = false
     elif (neighborCell == Id.AIR):

@@ -16,16 +16,22 @@ func draw():
     return _col
  
 func update(cells, _light, x: int, y: int):
+    if randi()%1000==0:
+        cells.kill(x,y)
+    
     var dx = randi()%3-1;
     var dy = 1
     if dx != 0:
         dy = 0
+        
+    var px = x + dx
+    var py = y + dy
     
-    var neighborcell = cells.get_cell_id(x+dx,y+dy)
+    var neighborcell = cells.get_cell_id(px,py)
     
     
-    if neighborcell == Id.AIR:
-        if rand_range(0,1)>0.99:
-            kill(cells, x, y)
-        else:
-            cells.swap_cell(x, y, x+dx, y+dy)
+    if is_gas(neighborcell):
+        cells.swap_cell(x, y, px, py)
+    elif neighborcell == Id.FIRE:
+        cells.kill(x,y)
+        cells.kill(px,py)
