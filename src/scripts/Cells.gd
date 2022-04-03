@@ -26,12 +26,12 @@ func set_cell_id_safe(x: int, y: int, id):
         set_cell(x,y,make_cell_from_id(id))
 
 
-func set_cell_id(x: int, y: int, id):
-    set_cell(x,y,make_cell_from_id(id))
+func set_cell_id(x: int, y: int, id, args=[]):
+    set_cell(x,y,make_cell_from_id(id, args))
 
 
 # creates a new cell with specified id
-func make_cell_from_id(id): # -> Cell
+func make_cell_from_id(id, args=[]): # -> Cell
     match id:
         Cell.Id.WALL:
             return WallCell.new()
@@ -49,15 +49,15 @@ func make_cell_from_id(id): # -> Cell
             return KelpCell.new()
         Cell.Id.GRASS:
             return GrassCell.new()
-        Cell.Id.TREE_1:
-            return PlantCell.new()
-        Cell.Id.TREE_2:
+        Cell.Id.TREE_1, Cell.Id.TREE_2, Cell.Id.FLOWER_1:
             var c = PlantCell.new()
-            c.type = "tree_2"
-            return c
-        Cell.Id.FLOWER_1:
-            var c = PlantCell.new()
-            c.type = "flower_1"
+            if args:
+                c.type = args.type
+                c.tex_x = args.tex_x
+                c.tex_y = args.tex_y
+                c.landed = args.landed
+            else:
+                c.type = PlantCell.type_ids.keys()[PlantCell.type_ids.values().find(id)]
             return c
         _:
             if id != Cell.Id.AIR:

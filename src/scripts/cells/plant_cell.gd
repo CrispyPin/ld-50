@@ -85,13 +85,10 @@ func grow(cells, _light, x: int, y: int):
 	if !(target_cell in [Id.AIR]):
 		return
 	
-	cells.set_cell_id(target_x, target_y, type_ids[type])
-
-	var new = cells.get_cell(target_x, target_y)
-	if new.getId() != type_ids[type]:
-		return # setting the cell to tree failed for some reason
-	new.tex_x = tex_x + dx
-	new.tex_y = tex_y + dy
-	new.landed = true
-	cells.redraw(target_x, target_y)
+	cells.set_cell_id(target_x, target_y, type_ids[type], {
+		"tex_x": tex_x + dx,
+		"tex_y": tex_y + dy,
+		"landed": true,
+		"type": type,
+		})
 
