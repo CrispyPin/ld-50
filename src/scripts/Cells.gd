@@ -54,6 +54,12 @@ static func make_cell_from_id(id, args=[]): # -> Cell
             return SmokeCell.new()
         Cell.Id.GRASS:
             return GrassCell.new()
+        Cell.Id.WORM:
+            var c = WormCell.new()
+            if args:
+                c.is_head = args["is_head"]
+                c.next_segment = args["next_segment"]
+            return c
         Cell.Id.TREE_1, Cell.Id.TREE_2, Cell.Id.FLOWER_1:
             var c = PlantCell.new()
             if args:

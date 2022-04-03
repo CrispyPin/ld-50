@@ -18,6 +18,7 @@ enum Id {
 	FLOWER_1,
     FIRE,
     SMOKE,
+	WORM,
 }
 
 static func is_flammable(id) -> bool:

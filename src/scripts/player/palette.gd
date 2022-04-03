@@ -8,6 +8,7 @@ const palette_items = {
 	"Dirt": Cell.Id.DIRT,
 	"Water": Cell.Id.WATER,
 	"Fire": Cell.Id.FIRE,
+	"Worm": Cell.Id.WORM,
 }
 
 var button_resource = preload("res://scenes/PaletteBtn.tscn")
