@@ -35,7 +35,9 @@ func update(cells, _light, x: int, y: int):
 		return
 	
 	var solidify = false
-	for dir in offsets:
+	#for dir in offsets:
+	var dir = offsets[randi()%offsets.size()]
+	if true:
 		var tx = x + dir[0]
 		var ty = y + dir[1]
 		var neighbor = cells.get_cell_id(tx, ty)
@@ -44,11 +46,11 @@ func update(cells, _light, x: int, y: int):
 			solidify = true
 		elif is_flammable(neighbor):
 			cells.set_cell_id(tx, ty, Id.FIRE)
-		elif (neighbor == Id.STONE || neighbor == Id.SAND) && rand_range(0,1)>0.99:
+		elif (neighbor == Id.STONE || neighbor == Id.SAND) && rand_range(0,1)> 0.995:#(0.999 if dir[1]<0 else (0.99 if dir[1]==0 else 0.9)):
 			cells.set_cell_id(tx, ty, Id.LAVA)
 			
 	if solidify:
-		if randf()>0.8:
+		if randf()>0.1:
 			cells.set_cell_id(x, y, Id.STONE)
 		else:
 			cells.set_cell_id(x, y, Id.SAND)

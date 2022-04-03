@@ -143,7 +143,10 @@ func _ready():
                         cells[x].append(DirtCell.new())
                 elif sd<0:
                     if sd<-0.4:
-                        cells[x].append(LavaCell.new())  
+                        if randf()>0.8:
+                            cells[x].append(LavaCell.new())  
+                        else:
+                            cells[x].append(StoneCell.new())
                         #if r>0.999:
                         #    cells[x].append(BirdCell.new())
                         #else:
@@ -267,13 +270,13 @@ func update_simulation():
         var y = randi()%draw.size[1]
         cells[x][y].update(self, light, x, y)
         
-    if rand_range(0,1)>0.8:
+    if randf()>0.8:
         var x = randi()%draw.size[0]
         var y = randi()%draw.size[1]
         var id = get_cell_id(x,y)
         if Cell.is_flammable(id):
             set_cell_id(x, y, Cell.Id.FIRE)
-        elif Cell.is_ground(id):
+        elif Cell.is_ground(id) && randf()>0.95:
             set_cell_id(x, y, Cell.Id.WORM)
 
 func _process(_delta):

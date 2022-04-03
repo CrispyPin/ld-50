@@ -13,7 +13,10 @@ func draw():
     return _col
  
 func kill(cells, x, y):
-	cells.set_cell_id(x,y,Id.WATER)
+    if randf()>0.9:
+        cells.set_cell_id(x,y,Id.AIR)
+    else:
+        cells.set_cell_id(x,y,Id.WATER)
 
 func update(cells, _light, x: int, y: int):
     if rand_range(0,1)>0.98:
