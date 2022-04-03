@@ -131,7 +131,7 @@ func _ready():
                 if sd_overhang>sd+0.20 || u < -0.5:
                     sd_overhang = 1
                     
-                var sd_overhang_abs = abs(sd_overhang)-0.1
+                var sd_overhang_abs = abs(sd_overhang)-0.2
                 
                 var sd_water = 0.2-v
                 if sd_overhang_abs<0:
@@ -140,7 +140,7 @@ func _ready():
                     else:
                         cells[x].append(DirtCell.new())
                 elif sd<0:
-                    if sd<-0.3:
+                    if sd<-0.4:
                         cells[x].append(LavaCell.new())  
                         #if r>0.999:
                         #    cells[x].append(BirdCell.new())

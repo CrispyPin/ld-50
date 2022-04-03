@@ -18,7 +18,7 @@ func update(cells, _light, x: int, y: int):
     
     var neighborCell = cells.get_cell_id(x+dx,y+1)
     
-    if (neighborCell == Id.AIR || neighborCell == Id.WATER):
+    if neighborCell == Id.AIR || is_liquid(neighborCell):
         cells.swap_cell(x, y, x+dx, y+1)
         
         

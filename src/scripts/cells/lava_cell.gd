@@ -39,11 +39,17 @@ func update(cells, _light, x: int, y: int):
 		var tx = x + dir[0]
 		var ty = y + dir[1]
 		var neighbor = cells.get_cell_id(tx, ty)
-		if neighbor == Id.WATER:
+		if is_moist(neighbor):
 			cells.set_cell_id(tx, ty, Id.SMOKE)
 			solidify = true
 		elif is_flammable(neighbor):
 			cells.set_cell_id(tx, ty, Id.FIRE)
+		elif (neighbor == Id.STONE || neighbor == Id.SAND) && rand_range(0,1)>0.99:
+			cells.set_cell_id(tx, ty, Id.LAVA)
 			
 	if solidify:
-		cells.set_cell_id(x, y, Id.STONE)
+		if randf()>0.8:
+			cells.set_cell_id(x, y, Id.STONE)
+		else:
+			cells.set_cell_id(x, y, Id.SAND)
+            
