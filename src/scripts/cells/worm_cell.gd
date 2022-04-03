@@ -25,13 +25,19 @@ func getId():
 func draw():
 	return _col
  
-func update(cells, light, x: int, y: int):
+func update(cells, _light, x: int, y: int):
 	still_time += 1
-	if still_time >= 10:
+	if still_time >= 15:
 		cells.set_cell_id(x, y, Id.DIRT)
 		return
 	if !is_head:
 		return
+	var cell_below = cells.get_cell_id(x, y+1)
+	if tail_invalid(cells) and cell_below in [Id.AIR, Id.WATER]:
+		cells.swap_cell(x, y, x, y+1)
+		still_time = 0
+		return
+	
 	directions.shuffle()
 	for d in directions:
 		var dx = d[0]
@@ -41,10 +47,10 @@ func update(cells, light, x: int, y: int):
 			continue
 		
 		# this is the only cell in the worm
-		if cells.get_cell_id(next_segment[0], next_segment[1]) != Id.WORM:
+		if tail_invalid(cells):
 			cells.set_cell_id(x+dx, y+dy, Id.WORM, {"is_head": true, "next_segment": [x, y]})
 			
-		elif can_eat(next_cell):
+		elif can_eat(next_cell) and randf() > 0.5:
 			cells.set_cell_id(x+dx, y+dy, Id.WORM, {"is_head": true, "next_segment": next_segment})
 		else:
 			cells.swap_cell(x+dx, y+dy, next_segment[0], next_segment[1])
@@ -55,11 +61,17 @@ func update(cells, light, x: int, y: int):
 		still_time = 0
 		return
 
+
+func tail_invalid(cells):
+	return cells.get_cell_id(next_segment[0], next_segment[1]) != Id.WORM
+
 func can_move(id):
 	return id in [
 		Id.SAND,
 		Id.DIRT,
 		Id.FLOWER_1,
+		Id.TREE_1,
+		Id.TREE_2,
 		Id.GRASS,
 		Id.KELP,
 		Id.STONE,
@@ -68,6 +80,8 @@ func can_move(id):
 func can_eat(id):
 	return id in [
 		Id.FLOWER_1,
+		Id.TREE_1,
+		Id.TREE_2,
 		Id.GRASS,
 		Id.KELP,
 	]

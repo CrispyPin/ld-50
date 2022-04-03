@@ -120,6 +120,11 @@ Global="*res://scripts/ui/global.gd"
 UI="*res://scenes/ui/UI.tscn"
 Textures="*res://scripts/Textures.gd"
 
+[display]
+
+window/size/width=1200
+window/size/height=666
+
 [editor]
 
 convert_text_resources_to_binary_on_export=true
