@@ -63,7 +63,7 @@ static func is_plant(id) -> bool:
 
 static func is_ground(id) -> bool:
 	return id in [
-		Id.WALL,
+		#Id.WALL,
 		Id.STONE,
 		Id.SAND,
 		Id.DIRT,

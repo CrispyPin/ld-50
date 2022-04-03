@@ -271,6 +271,8 @@ func update_simulation():
         var id = get_cell_id(x,y)
         if Cell.is_flammable(id):
             set_cell_id(x, y, Cell.Id.FIRE)
+        elif Cell.is_ground(id):
+            set_cell_id(x, y, Cell.Id.WORM)
 
 func _process(_delta):
     update_simulation()
