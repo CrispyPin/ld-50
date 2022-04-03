@@ -17,9 +17,12 @@ func draw():
     return _col
  
 func update(cells, _light, x: int, y: int):
-    if randi()%1000==0:
-        cells.kill(x,y)
-    
+    if randi()%500==0:
+        if cells.get_cell_id(x, y-1) == Id.AIR:
+            cells.kill(x,y)
+            return
+
+        
     var dx = randi()%3-1;
     var dy = 1
     if dx != 0:

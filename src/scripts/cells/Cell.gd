@@ -19,6 +19,7 @@ enum Id {
     FIRE,
     SMOKE,
 	WORM,
+	LAVA,
 }
 
 # is it basically just water
@@ -30,6 +31,7 @@ static func is_moist(id) -> bool:
 static func is_liquid(id) -> bool:
     return id in [ 
         Id.WATER,
+        Id.LAVA,
     ]
     
 static func is_gas(id) -> bool:
@@ -44,6 +46,8 @@ static func is_flammable(id) -> bool:
         Id.TREE_1, 
         Id.TREE_2, 
         Id.FLOWER_1, 
+        Id.WORM, 
+        Id.FISH, 
     ]
 
 func kill(cells, x, y):

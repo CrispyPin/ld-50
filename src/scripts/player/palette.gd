@@ -8,6 +8,7 @@ const palette_items = {
 	"Dirt": Cell.Id.DIRT,
 	"Water": Cell.Id.WATER,
 	"Fire": Cell.Id.FIRE,
+	"Lava": Cell.Id.LAVA,
 	"Worm": Cell.Id.WORM,
 }
 

@@ -6,4 +6,4 @@ func getId():
     return Id.STONE
 
 func draw():
-    return Color(0.5, 0.5, 0.5)
+    return Color(0.3, 0.3, 0.3)
