@@ -5,6 +5,7 @@ class_name GrassCell
 var _col: Color
 var landed := false
 var tried_growing_up := false
+var health := 50
 
 func _init():
 	self._col = Color(0.1,0.7,0.2)*rand_range(1.1,0.9)#Color(rand_range(0.6,0.8),rand_range(0.6,0.8),rand_range(0.4,0.6),1)
@@ -15,13 +16,22 @@ func getId():
 func draw():
 	return _col
  
-func update(cells, _light, x: int, y: int):
+func update(cells, light, x: int, y: int):
+	if health == 0:
+		cells.set_cell_id(x, y, Id.AIR)
+		return
+	if light[x][y] < randf():
+		health -= 1
+		
 	var cell_below = cells.get_cell_id(x, y + 1)
 	if !landed:
 		if cell_below in [Id.AIR, Id.WATER]:
 			cells.swap_cell(x, y, x, y + 1)
 		elif is_ground(cell_below):
 			landed = true
+		return
+
+	if light[x][y] < 0.5:
 		return
 	
 	if !is_ground(cell_below):
