@@ -13,7 +13,7 @@ func draw():
     return _col
  
 func kill(cells, x, y):
-	cells.set_cell_id(x,y,Id.SMOKE if rand_range(0,1)>0.5 else Id.AIR)
+	cells.set_cell_id(x,y,Id.SMOKE if rand_range(0,1)>0.25 else Id.AIR)
 
 func update(cells, _light, x: int, y: int):
     if randi()%10!=0:

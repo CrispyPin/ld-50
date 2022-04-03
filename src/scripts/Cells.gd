@@ -50,6 +50,8 @@ static func make_cell_from_id(id, args=[]): # -> Cell
             return DirtCell.new()
         Cell.Id.FISH:
             return FishCell.new()
+        Cell.Id.BIRD:
+            return BirdCell.new()
         Cell.Id.KELP:
             return KelpCell.new()
         Cell.Id.FIRE:
@@ -60,6 +62,8 @@ static func make_cell_from_id(id, args=[]): # -> Cell
             return GrassCell.new()
         Cell.Id.LAVA:
             return LavaCell.new()
+        Cell.Id.FUNGUS:
+            return FungusCell.new()
         Cell.Id.WORM:
             var c = WormCell.new()
             if args:
@@ -185,6 +189,8 @@ func _ready():
     set_cell_id(170,40,Cell.Id.TREE_1)
     set_cell_id(185,40,Cell.Id.TREE_2)
     set_cell_id(190,40,Cell.Id.GRASS)
+    set_cell_id(140,40,Cell.Id.GRASS)
+    set_cell_id(79,50,Cell.Id.FUNGUS)
 
     
     for x in range(draw.size[0]):

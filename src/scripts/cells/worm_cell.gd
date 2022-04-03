@@ -75,6 +75,7 @@ func can_move(id):
 		Id.GRASS,
 		Id.KELP,
 		Id.STONE,
+		Id.FUNGUS,
 	]
 
 func can_eat(id):
