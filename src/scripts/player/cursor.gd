@@ -33,9 +33,9 @@ func _process(_delta):
 				cells.set_cell_id(pixel_pos[0], pixel_pos[1], cell_type)
 	
 	elif Input.get_mouse_button_mask() == BUTTON_RIGHT:
-		cell_type = cells.get_cell_id(pixel_pos[0], pixel_pos[1])
-		if cell_type == Cell.Id.WALL:
-			cell_type = Cell.Id.STONE
+		var new_type = cells.get_cell_id(pixel_pos[0], pixel_pos[1])
+		if !(new_type in [Cell.Id.WALL, Cell.Id.AIR]):
+			cell_type = new_type
 
 	if Input.is_action_just_pressed("toggle_brush_size"):
 		large_mode = !large_mode

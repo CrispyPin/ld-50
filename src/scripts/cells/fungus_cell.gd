@@ -35,7 +35,7 @@ func update(cells, light, x: int, y: int):
 			landed = true
 		return
 
-	if light[x][y] > randf()*0.5:
+	if light[x][y] > randf()*0.5 or randf() < 0.75:
 		return
 	
 	var offset = grow_offsets[randi()%8]
