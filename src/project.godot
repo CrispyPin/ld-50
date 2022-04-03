@@ -126,11 +126,6 @@ Global="*res://scripts/ui/global.gd"
 UI="*res://scenes/ui/UI.tscn"
 Textures="*res://scripts/Textures.gd"
 
-[display]
-
-window/size/width=1200
-window/size/height=666
-
 [editor]
 
 convert_text_resources_to_binary_on_export=true
@@ -169,11 +164,6 @@ ui_end={
 game_menu={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-toggle_brush_size={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777218,"unicode":0,"echo":false,"script":null)
  ]
 }
 

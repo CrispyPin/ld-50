@@ -141,10 +141,11 @@ func _ready():
                         cells[x].append(DirtCell.new())
                 elif sd<0:
                     if sd<-0.3:
-                        if r>0.999:
-                            cells[x].append(BirdCell.new())
-                        else:
-                            cells[x].append(AirCell.new())
+                        cells[x].append(LavaCell.new())  
+                        #if r>0.999:
+                        #    cells[x].append(BirdCell.new())
+                        #else:
+                        #    cells[x].append(AirCell.new())
                     elif sd<-0.2:
                         cells[x].append(StoneCell.new())
                     else:
