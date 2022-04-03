@@ -5,7 +5,7 @@ export var t_small: Texture
 export var t_large: Texture
 
 var pixel_pos
-var cell_type = Cell.Id.FIRE
+var cell_type = Cell.Id.FUNGUS
 var large_mode := false
 
 onready var draw = $"../Draw"

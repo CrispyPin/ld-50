@@ -20,6 +20,7 @@ enum Id {
     SMOKE,
 	WORM,
 	LAVA,
+	FUNGUS,
 }
 
 # is it basically just water
@@ -33,7 +34,11 @@ static func is_liquid(id) -> bool:
         Id.WATER,
         Id.LAVA,
     ]
-    
+
+static func is_fluid(id) -> bool:
+    return is_liquid(id) or is_gas(id)
+
+
 static func is_gas(id) -> bool:
     return id in [ 
         Id.AIR,
@@ -48,6 +53,7 @@ static func is_flammable(id) -> bool:
         Id.FLOWER_1, 
         Id.WORM, 
         Id.FISH, 
+		Id.FUNGUS,
     ]
 
 func kill(cells, x, y):
@@ -58,7 +64,7 @@ static func is_plant(id) -> bool:
 		Id.TREE_1,
 		Id.TREE_2,
 		Id.FLOWER_1,
-        
+        Id.FUNGUS,
 	]
 
 static func is_ground(id) -> bool:
