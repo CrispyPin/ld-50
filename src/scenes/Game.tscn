@@ -13,6 +13,7 @@ script = ExtResource( 2 )
 [node name="Cells" type="Node" parent="Draw"]
 script = ExtResource( 5 )
 
-[node name="Cursor" parent="." instance=ExtResource( 3 )]
-
 [node name="Palette" parent="." instance=ExtResource( 1 )]
+
+[node name="Cursor" parent="." instance=ExtResource( 3 )]
+mouse_filter = 2

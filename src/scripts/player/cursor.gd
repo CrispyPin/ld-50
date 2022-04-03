@@ -1,5 +1,9 @@
 extends TextureRect
 
+
+export var t_small: Texture
+export var t_large: Texture
+
 var pixel_pos
 var cell_type = Cell.Id.FIRE
 var large_mode := false
@@ -35,6 +39,14 @@ func _process(_delta):
 
 	if Input.is_action_just_pressed("toggle_brush_size"):
 		large_mode = !large_mode
+		update_texture()
+
+func update_texture():
+	if large_mode:
+		texture = t_large
+	else:
+		texture = t_small
+
 
 func snap_position(screen_pos: Vector2, grid_size) -> Vector2:
 	var p = screen_to_pixel(screen_pos, grid_size)

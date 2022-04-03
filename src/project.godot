@@ -180,6 +180,8 @@ toggle_brush_size={
 [physics]
 
 common/enable_pause_aware_picking=true
+2d/use_bvh=false
+2d/bp_hash_table_size=0
 
 [rendering]
 
