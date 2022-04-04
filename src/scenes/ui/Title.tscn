@@ -10,9 +10,6 @@ custom_constants/margin_right = 4
 custom_constants/margin_top = 4
 custom_constants/margin_left = 4
 custom_constants/margin_bottom = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 margin_left = 4.0
@@ -29,7 +26,7 @@ margin_right = 337.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
-text = "Game Title"
+text = "Pixel Entropy"
 align = 1
 valign = 1
 __meta__ = {

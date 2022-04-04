@@ -87,7 +87,7 @@ margin_top = 8.0
 margin_right = 432.0
 margin_bottom = 109.0
 custom_fonts/font = ExtResource( 6 )
-text = "Welcome to [Untitle Pixel Game]!
+text = "Welcome to Pixel Entropy!
 Your mission is to keep the evil entropy
 from making anything go extinct for as long as possible.
 Good luck!"
