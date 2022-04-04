@@ -1,11 +1,13 @@
 extends TextureRect
 
+signal type_changed
+
 export var t_small: Texture
 export var t_large: Texture
 
 var pixel_pos
 var psize := 4
-var cell_type = Cell.Id.FUNGUS
+var cell_type = Cell.Id.FUNGUS setget set_type
 var large_mode := false
 
 onready var draw = $"../CenterX/AlignTop/Draw"
@@ -36,7 +38,7 @@ func _process(_delta):
 		if pos_valid(pixel_pos):
 			var new_type = cells.get_cell_id(pixel_pos[0], pixel_pos[1])
 			if !(new_type in [Cell.Id.WALL, Cell.Id.AIR]):
-				cell_type = new_type
+				set_type(new_type)
 
 	if Input.is_action_just_pressed("toggle_brush_size"):
 		large_mode = !large_mode
@@ -60,6 +62,10 @@ func screen_to_pixel(s_pos: Vector2) -> Array:
 	var px = int((s_pos.x - offset.x) / psize)
 	var py = int((s_pos.y - offset.y) / psize)
 	return [px, py]
+
+func set_type(new):
+	cell_type = new
+	emit_signal("type_changed")
 
 func pos_valid(xy) -> bool:
 	return xy[0] > 0 and xy[1] > 0 and xy[0] < draw.size[0] -1 and xy[1] < draw.size[1] -1

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/player/palette.gd" type="Script" id=1]
 [ext_resource path="res://scenes/PaletteBtn.tscn" type="PackedScene" id=2]
 [ext_resource path="res://themes/palette.theme" type="Theme" id=3]
+[ext_resource path="res://themes/box_styles/palette_item.stylebox" type="StyleBox" id=5]
 
 [node name="Palette" type="MarginContainer"]
 anchor_right = 1.0
@@ -23,12 +24,45 @@ margin_bottom = 712.0
 alignment = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 660.0
+margin_top = 654.0
 margin_right = 1264.0
 margin_bottom = 704.0
 alignment = 1
 
 [node name="LayoutPlaceholder" parent="VBoxContainer/HBoxContainer" instance=ExtResource( 2 )]
-margin_left = 569.0
-margin_right = 694.0
-margin_bottom = 44.0
+margin_left = 505.0
+margin_right = 630.0
+margin_bottom = 50.0
+
+[node name="Panel" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 634.0
+margin_right = 758.0
+margin_bottom = 50.0
+custom_styles/panel = ExtResource( 5 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel"]
+margin_left = 12.0
+margin_top = 8.0
+margin_right = 112.0
+margin_bottom = 42.0
+
+[node name="LabelTool" type="Label" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer"]
+margin_right = 61.0
+margin_bottom = 34.0
+text = "Tool: "
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer"]
+margin_left = 65.0
+margin_right = 65.0
+margin_bottom = 34.0
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer/VBoxContainer"]
+margin_top = 17.0
+margin_bottom = 17.0
+
+[node name="LabelType" type="Label" parent="VBoxContainer/HBoxContainer/Panel/HBoxContainer"]
+margin_left = 69.0
+margin_right = 100.0
+margin_bottom = 34.0
+text = "Air"

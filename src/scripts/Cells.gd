@@ -6,8 +6,8 @@ var light = []
 var draw
 
 # for things that should never be out of bounds.
-func bounds_check_safe(x: int, y: int) -> bool:
-    return true#!(x<0 || y<0 || x>=draw.size[0] || y>=draw.size[1])
+func bounds_check_safe(_x: int, _y: int) -> bool:
+    return true#!(_x < 0 || _y < 0 || _x >= draw.size[0] || _y >= draw.size[1])
 
 func bounds_check(x: int, y: int) -> bool:
     #print(draw.size,", ",x,", ",y)
