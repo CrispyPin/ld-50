@@ -44,6 +44,12 @@ func _process(_delta):
 		large_mode = !large_mode
 		update_texture()
 
+	if Input.is_action_just_pressed("next_celltype"):
+		set_type(cell_type + 1)
+	if Input.is_action_just_pressed("prev_celltype"):
+		set_type(cell_type - 1)
+
+
 func update_texture():
 	if large_mode:
 		texture = t_large

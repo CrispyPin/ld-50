@@ -66,10 +66,10 @@ func _pressed_item(id):
 func update_tooltip():
 	var id = cursor.cell_type
 	$VBoxContainer/HBoxContainer/Panel/HBoxContainer/VBoxContainer/Icon.texture = image_tex_from_id(id)
+	var cell_name = "You broke the game [id=" + str(id) + "]"
 	if id in name_list:
-		$VBoxContainer/HBoxContainer/Panel/HBoxContainer/LabelType.text = name_list[id]
-	else:
-		$VBoxContainer/HBoxContainer/Panel/HBoxContainer/LabelType.text = "POV: you broke the game"
+		cell_name = name_list[id]
+	$VBoxContainer/HBoxContainer/Panel/HBoxContainer/LabelType.text = cell_name
 
 
 func image_tex_from_id(id, size=28):
