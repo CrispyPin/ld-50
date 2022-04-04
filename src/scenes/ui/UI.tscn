@@ -18,6 +18,7 @@ margin_left = -241.0
 margin_top = 29.0
 margin_right = 240.0
 margin_bottom = 572.0
+mouse_filter = 1
 
 [node name="MainMenu" parent="Menus" instance=ExtResource( 5 )]
 anchor_right = 0.0

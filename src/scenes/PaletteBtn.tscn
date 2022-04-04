@@ -1,6 +1,11 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://themes/palette.theme" type="Theme" id=1]
 
 [node name="Button" type="Button"]
 margin_right = 48.0
 margin_bottom = 40.0
+focus_mode = 0
+theme = ExtResource( 1 )
+enabled_focus_mode = 0
 text = "Cell Name"

@@ -13,11 +13,12 @@ const palette_items = {
 
 var button_resource = preload("res://scenes/PaletteBtn.tscn")
 var cursor
-onready var container = $HBoxContainer
+onready var container = $VBoxContainer/HBoxContainer
 
 
 func _ready():
 	cursor = get_node("/root/Game/Cursor")
+	$VBoxContainer/HBoxContainer/LayoutPlaceholder.queue_free()
 	for name in palette_items:
 		var btn = button_resource.instance()
 		btn.text = name
@@ -25,7 +26,7 @@ func _ready():
 
 		# create image and fill it with the cell types colour
 		var img = Image.new()
-		img.create(32, 32, false, Image.FORMAT_RGB8)
+		img.create(24, 24, false, Image.FORMAT_RGB8)
 		var cell = Cells.make_cell_from_id(palette_items[name])
 		img.fill(cell.draw())
 

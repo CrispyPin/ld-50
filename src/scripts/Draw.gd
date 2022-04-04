@@ -42,7 +42,7 @@ func _process(_delta):
 func update_pixel_size():
 	var res = get_viewport().size
 	var px = floor(res.x / size[0])
-	var py = floor((res.y - 40)/ size[1])
+	var py = floor((res.y - 50)/ size[1])
 	var new = max(min(px, py), 1)
 	if new != pixel_size:
 		Global.set_setting("pixel_size", new)

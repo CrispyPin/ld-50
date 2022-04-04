@@ -63,5 +63,8 @@ func stop_game():
 
 func set_menu(menu_name := "No"):
 	for m in $Menus.get_children():
-		m.visible = m.name == menu_name + "Menu"
+		var state = m.name == menu_name + "Menu"
+		m.visible = state
+	$Menus.visible = menu_name != "No"
+
 	current_menu = menu_name
