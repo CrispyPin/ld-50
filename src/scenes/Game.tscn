@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/Palette.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Draw.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://themes/smaller_font.tres" type="DynamicFont" id=6]
 [ext_resource path="res://scripts/species_status.gd" type="Script" id=7]
 [ext_resource path="res://themes/box_styles/faint_box.stylebox" type="StyleBox" id=8]
+[ext_resource path="res://scripts/fade.gd" type="Script" id=9]
 
 [node name="Game" type="Control"]
 anchor_right = 1.0
@@ -31,20 +32,20 @@ script = ExtResource( 2 )
 [node name="Cells" type="Node" parent="CenterX/AlignTop/Draw"]
 script = ExtResource( 5 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="SpeciesListContainer" type="HBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SpeciesListContainer"]
 margin_right = 85.0
 margin_bottom = 720.0
 
-[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="SpeciesListContainer/VBoxContainer"]
 margin_right = 85.0
 margin_bottom = 39.0
 custom_styles/panel = ExtResource( 8 )
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/PanelContainer"]
+[node name="SpeciesList" type="Label" parent="SpeciesListContainer/VBoxContainer/PanelContainer"]
 margin_left = 12.0
 margin_top = 8.0
 margin_right = 73.0
@@ -52,6 +53,35 @@ margin_bottom = 31.0
 custom_fonts/font = ExtResource( 6 )
 text = "Species:"
 script = ExtResource( 7 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="StartPopupContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 1280.0
+margin_bottom = 117.0
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/StartPopupContainer"]
+modulate = Color( 0.639216, 1, 1, 1 )
+margin_left = 418.0
+margin_right = 862.0
+margin_bottom = 117.0
+custom_styles/panel = ExtResource( 8 )
+script = ExtResource( 9 )
+
+[node name="StartInfo" type="Label" parent="VBoxContainer/StartPopupContainer/PanelContainer"]
+margin_left = 12.0
+margin_top = 8.0
+margin_right = 432.0
+margin_bottom = 109.0
+custom_fonts/font = ExtResource( 6 )
+text = "Welcome to [Untitle Pixel Game]!
+Your mission is to stop the evil villain \"Entropy\"
+from making anything go extinct for as long as possible.
+Good luck!"
+align = 1
 
 [node name="Palette" parent="." instance=ExtResource( 1 )]
 

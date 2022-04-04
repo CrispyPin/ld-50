@@ -174,11 +174,6 @@ func _ready():
             else:
                 cells[x].append(WallCell.new())
 
-    for x in range(1, draw.size[0]-1):
-        set_cell_id(x, draw.size[1]-2, Cell.Id.STONE)
-        set_cell_id(x, draw.size[1]-3, Cell.Id.STONE)
-        set_cell_id(x, draw.size[1]-4, Cell.Id.DIRT)
-
     for x in range(20, 60, 2):
         set_cell(x, 50, KelpCell.new())
 
