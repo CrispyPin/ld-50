@@ -69,7 +69,7 @@ func update_tooltip():
 	if id in name_list:
 		$VBoxContainer/HBoxContainer/Panel/HBoxContainer/LabelType.text = name_list[id]
 	else:
-		$VBoxContainer/HBoxContainer/Panel/HBoxContainer/LabelType.text = "i forgot to add this type sorry"
+		$VBoxContainer/HBoxContainer/Panel/HBoxContainer/LabelType.text = "POV: you broke the game"
 
 
 func image_tex_from_id(id, size=28):

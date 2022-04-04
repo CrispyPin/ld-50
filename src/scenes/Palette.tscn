@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/player/palette.gd" type="Script" id=1]
 [ext_resource path="res://scenes/PaletteBtn.tscn" type="PackedScene" id=2]
 [ext_resource path="res://themes/palette.theme" type="Theme" id=3]
+[ext_resource path="res://themes/fonts/OpenSans-Regular.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://themes/box_styles/palette_item.stylebox" type="StyleBox" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 4 )
 
 [node name="Palette" type="MarginContainer"]
 anchor_right = 1.0
@@ -23,20 +27,28 @@ margin_right = 1272.0
 margin_bottom = 712.0
 alignment = 2
 
+[node name="InfoAlign" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 627.0
+margin_right = 1264.0
+margin_bottom = 650.0
+alignment = 1
+
+[node name="InfoLabel" type="Label" parent="VBoxContainer/InfoAlign"]
+margin_left = 401.0
+margin_right = 862.0
+margin_bottom = 23.0
+custom_fonts/font = SubResource( 1 )
+text = "Left click to pick,  Right click to place,  Tab to toggle brush size"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 654.0
 margin_right = 1264.0
 margin_bottom = 704.0
 alignment = 1
 
-[node name="LayoutPlaceholder" parent="VBoxContainer/HBoxContainer" instance=ExtResource( 2 )]
-margin_left = 505.0
-margin_right = 630.0
-margin_bottom = 50.0
-
 [node name="Panel" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
-margin_left = 634.0
-margin_right = 758.0
+margin_left = 505.0
+margin_right = 629.0
 margin_bottom = 50.0
 custom_styles/panel = ExtResource( 5 )
 
@@ -66,3 +78,8 @@ margin_left = 69.0
 margin_right = 100.0
 margin_bottom = 34.0
 text = "Air"
+
+[node name="LayoutPlaceholder" parent="VBoxContainer/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 633.0
+margin_right = 758.0
+margin_bottom = 50.0
