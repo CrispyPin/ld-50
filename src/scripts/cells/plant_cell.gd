@@ -77,7 +77,7 @@ func update(cells, light, x: int, y: int):
 
 	# falling logic
 	var cell_below = cells.get_cell_id(x, y + 1)
-	if is_ground(cell_below):
+	if is_ground(cell_below) or cell_below == Id.WALL:
 		landed = true
 	elif is_plant(cell_below):
 		cells.set_cell(x, y, AirCell.new())
