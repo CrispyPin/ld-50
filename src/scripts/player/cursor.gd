@@ -10,12 +10,37 @@ var psize := 4
 var cell_type = Cell.Id.FUNGUS setget set_type
 var large_mode := false
 
+var audio_nodes := {}
+var audio_times := {}
+var audio_lengths := {}
+
+
 onready var draw = $"../CenterX/AlignTop/Draw"
 onready var cells = draw.get_node("Cells")
 
 func _ready():
 	Global.connect("setting_changed", self, "_setting_changed")
 	_setting_changed()
+	audio_nodes = {
+		"default": $Audio/Pop,
+		Cell.Id.STONE: $Audio/Knock,
+		Cell.Id.FISH: $Audio/LowPop,
+		Cell.Id.BIRD: $Audio/LowPop,
+		Cell.Id.WORM: $Audio/LowPop,
+		Cell.Id.AIR: $Audio/Woosh,
+		Cell.Id.SMOKE: $Audio/Woosh,
+		Cell.Id.SAND: $Audio/Sand,
+	}
+	for node in $Audio.get_children():
+		audio_times[node] = 0
+	audio_lengths = {
+		$Audio/Pop: 2,
+		$Audio/LowPop: 3,
+		$Audio/Stone: 3,
+		$Audio/Knock: 3,
+		$Audio/Woosh: 6,
+		$Audio/Sand: 5,
+	}
 
 func _process(_delta):
 	rect_size = 3 * Vector2(psize, psize)
@@ -28,11 +53,16 @@ func _process(_delta):
 			for x in range(-1,2):
 				for y in range(-1,2):
 					var xy = [pixel_pos[0]+x, pixel_pos[1]+y]
+					var any = false
 					if pos_valid(xy):
-						cells.set_cell_id(xy[0], xy[1], cell_type)
+						if place_cell(xy[0], xy[1]):
+							any = true
+					if any:
+						play_sound()
 		else:
 			if pos_valid(pixel_pos):
-				cells.set_cell_id(pixel_pos[0], pixel_pos[1], cell_type)
+				if place_cell(pixel_pos[0], pixel_pos[1]):
+					play_sound()
 
 	elif Input.get_mouse_button_mask() == BUTTON_RIGHT:
 		if pos_valid(pixel_pos):
@@ -49,6 +79,33 @@ func _process(_delta):
 	if Input.is_action_just_pressed("prev_celltype"):
 		set_type(cell_type - 1)
 
+	for n in audio_times:
+		audio_times[n] += 1
+
+# returns wether anything changed
+func place_cell(x, y) -> bool:
+	if !(cell_type in Cell.Id.values()):
+		return false
+	var old = cells.get_cell_id(x, y)
+	if old != cell_type:
+		cells.set_cell_id(x, y, cell_type)
+		return true
+	return false
+
+func play_sound():
+	var n = get_audio_node()
+#	n.play()
+	# audio must play at least a few frames before restarting
+	if audio_times[n] >= audio_lengths[n]:
+		n.play()
+		audio_times[n] = 0
+#	if !n.playing:
+#		n.playing = true
+
+func get_audio_node():
+	if cell_type in audio_nodes:
+		return audio_nodes[cell_type]
+	return audio_nodes["default"]
 
 func update_texture():
 	if large_mode:
