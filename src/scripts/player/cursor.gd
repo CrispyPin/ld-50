@@ -37,7 +37,6 @@ func _ready():
 	audio_lengths = {
 		$Audio/Pop: 2,
 		$Audio/LowPop: 3,
-		$Audio/Stone: 3,
 		$Audio/Knock: 3,
 		$Audio/Woosh: 6,
 		$Audio/Sand: 5,
