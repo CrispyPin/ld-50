@@ -26,7 +26,7 @@ const SETTINGS_DEF = {
 		"flags": [],
 		"type": "number",
 		"default": 20,
-		"min": 1,
+		"min": 0,
 		"max": 40,
 		"step": 5,
 	},
@@ -85,7 +85,7 @@ var settings = {}
 func _process(_delta):
 	for x in time_since_update:
 		time_since_update[x] += 1
-		if time_since_update[x] > 60:
+		if time_since_update[x] > 2000/(settings["update_rate"]+0.01):
 			species_alive[x] = false
 		else:
 			species_alive[x] = true
