@@ -34,11 +34,11 @@ margin_bottom = 650.0
 alignment = 1
 
 [node name="InfoLabel" type="Label" parent="VBoxContainer/InfoAlign"]
-margin_left = 401.0
-margin_right = 862.0
+margin_left = 281.0
+margin_right = 983.0
 margin_bottom = 23.0
 custom_fonts/font = ExtResource( 4 )
-text = "Left click to pick,  Right click to place,  Tab to toggle brush size"
+text = "Left click to place cells,  Right click to pick (or use the buttons below),  Tab to toggle brush size"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 654.0

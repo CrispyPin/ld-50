@@ -75,7 +75,6 @@ margin_bottom = 117.0
 alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="IntroContainer/HBoxContainer"]
-modulate = Color( 0.639216, 1, 1, 1 )
 margin_left = 418.0
 margin_right = 862.0
 margin_bottom = 117.0
@@ -89,7 +88,7 @@ margin_right = 432.0
 margin_bottom = 109.0
 custom_fonts/font = ExtResource( 6 )
 text = "Welcome to [Untitle Pixel Game]!
-Your mission is to stop the evil villain \"Entropy\"
+Your mission is to keep the evil entropy
 from making anything go extinct for as long as possible.
 Good luck!"
 align = 1

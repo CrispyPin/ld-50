@@ -7,7 +7,7 @@ export var t_large: Texture
 
 var pixel_pos
 var psize := 4
-var cell_type = Cell.Id.FUNGUS setget set_type
+var cell_type = Cell.Id.STONE setget set_type
 var large_mode := false
 
 var audio_nodes := {}
