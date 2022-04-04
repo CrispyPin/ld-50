@@ -13,18 +13,15 @@ const grow_offsets = [
 	Vector2(1, -1),
 ]
 
-var _col: Color
 var landed := false
-
-func _init():
-	self._col = Color(0.6, 0.0, 1.0)*rand_range(1.1,0.9)#Color(rand_range(0.6,0.8),rand_range(0.6,0.8),rand_range(0.4,0.6),1)
 
 func getId():
 	return Id.FUNGUS
 
 func draw():
-#	return _col
-	return Color(0,1,1)
+#	return Color(0,1,1)
+	# flickering effect
+	return Color(0.6, 0.0, 1.0) * rand_range(1.2,0.7)
 
 func update(cells, light, x: int, y: int):
 	if !landed:
@@ -45,6 +42,10 @@ func update(cells, light, x: int, y: int):
 
 	var surface = grow_offsets[randi()%4] + offset
 	if !is_ground(cells.get_cell_id(x + surface.x, y + surface.y)):
+		# small chance of growing a cell that is not rooted
+		# this can fall down
+		if randf() < 0.02:
+			cells.set_cell_id(x + offset.x, y + offset.y, Id.FUNGUS)
 		return
 
 	cells.set_cell_id(x + offset.x, y + offset.y, Id.FUNGUS)

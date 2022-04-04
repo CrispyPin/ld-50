@@ -192,6 +192,8 @@ func _ready():
     set_cell_id(190,40,Cell.Id.GRASS)
     set_cell_id(140,40,Cell.Id.GRASS)
     set_cell_id(79,50,Cell.Id.FUNGUS)
+    set_cell_id(90,45,Cell.Id.WORM)
+    set_cell_id(60,40,Cell.Id.WORM)
 
 
     for x in range(draw.size[0]):
@@ -283,8 +285,8 @@ func update_simulation():
     elif randf()>0.8:
         if Cell.is_flammable(id):
             set_cell_id(x, y, Cell.Id.FIRE)
-        elif Cell.is_ground(id) && randf()>0.95:
-            set_cell_id(x, y, Cell.Id.WORM)
+#        elif Cell.is_ground(id) && randf()>0.95:
+#            set_cell_id(x, y, Cell.Id.WORM)
 
 
 func _process(_delta):
