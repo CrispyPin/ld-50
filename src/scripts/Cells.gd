@@ -187,6 +187,7 @@ func _ready():
     set_cell_id(190,40,Cell.Id.GRASS)
     set_cell_id(140,40,Cell.Id.GRASS)
     set_cell_id(79,50,Cell.Id.FUNGUS)
+    set_cell_id(76,49,Cell.Id.FUNGUS)
     set_cell_id(90,45,Cell.Id.WORM)
     set_cell_id(60,40,Cell.Id.WORM)
 

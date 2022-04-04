@@ -37,3 +37,4 @@ func update(cells, _light, x: int, y: int):
 		dx*=-1
 		if held_seed == null and is_plant(neighborCell):
 			held_seed = neighborCell
+			cells.set_cell_id(px, py, Id.AIR)
