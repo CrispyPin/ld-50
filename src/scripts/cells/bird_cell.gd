@@ -35,5 +35,5 @@ func update(cells, _light, x: int, y: int):
 		cells.swap_cell(x, y, px, py)
 	else:
 		dx*=-1
-		if is_plant(neighborCell):
+		if held_seed == null and is_plant(neighborCell):
 			held_seed = neighborCell

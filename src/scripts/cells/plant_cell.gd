@@ -21,6 +21,7 @@ var grow_offsets = [[0, -1], [-1, 0], [1, 0], [0, 1]]
 var type := "tree_1" setget set_type
 var t_width: int
 var t_height: int
+var instance_id := -1
 
 var dying: bool = false
 
@@ -35,8 +36,8 @@ func mark_near_dying(cells, x, y):
         var near = cells.get_cell(px,py)
         if is_plant(near.getId()):
             #print("mark: ",px,", ",py)
-            near.mark_dying()
-
+            if near.instance_id == instance_id:
+                near.mark_dying()
 
 
 func mark_dying():
@@ -44,6 +45,8 @@ func mark_dying():
 
 func _init():
 	set_type(type)
+	if instance_id == -1:
+		instance_id = randi()
 	grow_offsets.shuffle()
 
 func set_type(new):
@@ -116,5 +119,6 @@ func grow(cells, light, x: int, y: int):
 		"tex_y": tex_y + dy,
 		"landed": true,
 		"type": type,
+		"instance_id": instance_id
 		})
 

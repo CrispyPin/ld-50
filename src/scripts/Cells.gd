@@ -77,6 +77,7 @@ static func make_cell_from_id(id, args=[]): # -> Cell
                 c.tex_x = args.tex_x
                 c.tex_y = args.tex_y
                 c.landed = args.landed
+                c.instance_id = args.instance_id
             else:
                 c.type = PlantCell.type_ids.keys()[PlantCell.type_ids.values().find(id)]
             return c
