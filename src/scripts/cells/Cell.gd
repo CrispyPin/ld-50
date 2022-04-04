@@ -44,6 +44,7 @@ static func is_gas(id) -> bool:
     return id in [
         Id.AIR,
         Id.SMOKE,
+        Id.BIRD,
     ]
 
 static func is_flammable(id) -> bool:
