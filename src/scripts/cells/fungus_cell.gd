@@ -24,6 +24,7 @@ func draw():
 	return Color(0.6, 0.0, 1.0) * rand_range(1.2,0.7)
 
 func update(cells, light, x: int, y: int):
+	Global.time_since_update["fungus"] = 0
 	if !landed:
 		var cell_below = cells.get_cell_id(x, y + 1)
 		if is_fluid(cell_below):

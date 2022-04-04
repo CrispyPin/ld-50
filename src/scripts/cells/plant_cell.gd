@@ -66,6 +66,7 @@ func draw():
 #	return Color(1.0, 0.0, 1.0)
 
 func update(cells, light, x: int, y: int):
+	Global.time_since_update[type] = 0
 	if landed:
 		if dying:
 			grow_offsets = []

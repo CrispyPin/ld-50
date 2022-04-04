@@ -26,6 +26,7 @@ func draw():
 	return _col
 
 func update(cells, _light, x: int, y: int):
+	Global.time_since_update["worm"] = 0
 	still_time += 1
 	if still_time > 15:
 		cells.set_cell_id(x, y, Id.DIRT)

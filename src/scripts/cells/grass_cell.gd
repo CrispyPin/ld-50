@@ -17,6 +17,7 @@ func draw():
 	return _col
 
 func update(cells, light, x: int, y: int):
+	Global.time_since_update["grass"] = 0
 	if health == 0:
 		cells.set_cell_id(x, y, Id.AIR)
 		return

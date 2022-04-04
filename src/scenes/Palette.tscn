@@ -1,13 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/player/palette.gd" type="Script" id=1]
 [ext_resource path="res://scenes/PaletteBtn.tscn" type="PackedScene" id=2]
 [ext_resource path="res://themes/palette.theme" type="Theme" id=3]
-[ext_resource path="res://themes/fonts/OpenSans-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://themes/smaller_font.tres" type="DynamicFont" id=4]
 [ext_resource path="res://themes/box_styles/palette_item.stylebox" type="StyleBox" id=5]
-
-[sub_resource type="DynamicFont" id=1]
-font_data = ExtResource( 4 )
 
 [node name="Palette" type="MarginContainer"]
 anchor_right = 1.0
@@ -37,7 +34,7 @@ alignment = 1
 margin_left = 401.0
 margin_right = 862.0
 margin_bottom = 23.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 4 )
 text = "Left click to pick,  Right click to place,  Tab to toggle brush size"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]

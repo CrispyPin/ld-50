@@ -6,6 +6,17 @@ const PAUSE_IN_MENU = true
 const CURSOR_MODE = Input.MOUSE_MODE_HIDDEN
 const INSTANT_START = true
 
+var time_since_update = {
+	"worm": 0,
+	"fish": 0,
+	"kelp": 0,
+	"grass": 0,
+	"tree_1": 0,
+	"tree_2": 0,
+	"flower_1": 0,
+	"fungus": 0,
+}
+var species_alive := {}
 
 const DEBUG_SETTINGS = false
 const SETTINGS_PATH = "user://settings.json"
@@ -71,11 +82,22 @@ var paused = false
 var settings = {}
 
 
+func _process(_delta):
+	for x in time_since_update:
+		time_since_update[x] += 1
+		if time_since_update[x] > 60:
+			species_alive[x] = false
+		else:
+			species_alive[x] = true
+
 func _ready() -> void:
 	_init_settings()
 	load_settings()
 	settings_loaded = true
 	emit_signal("setting_changed")
+
+	for n in time_since_update:
+		species_alive[n] = true
 
 
 func set_setting(key, val):

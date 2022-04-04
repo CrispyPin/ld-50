@@ -17,10 +17,10 @@ func getId():
 
 func draw():
     return _col
- 
+
 var dx = -1;
 func update(cells, light, x: int, y: int):
-    
+    Global.time_since_update["fish"] = 0
     var dy = randi()%3-1;
     var l = light[x][y]
     if rand_range(0,1)<0.8:
@@ -28,20 +28,20 @@ func update(cells, light, x: int, y: int):
             dy = 1
         elif l<0.3:
             dy = -1
-        
-    
-    
-    
+
+
+
+
     if dx == 0 && dy == 0:
         return
-    
+
     var px = x + dx
     var py = y + dy
-    
-    
-    
+
+
+
     var neighborCell = cells.get_cell_id(px,py)
-    
+
     if (neighborCell == Id.FISH):
         cells.kill(px,py)
         dx*=-1;

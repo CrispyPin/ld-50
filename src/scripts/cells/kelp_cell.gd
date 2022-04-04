@@ -24,6 +24,7 @@ func draw():
 
 
 func update(cells, light, x: int, y: int):
+    Global.time_since_update["kelp"] = 0
     if true:
         var neighborCell = cells.get_cell_id(x, y+1)
 
