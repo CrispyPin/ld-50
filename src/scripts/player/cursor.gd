@@ -30,6 +30,7 @@ func _ready():
 		Cell.Id.AIR: $Audio/Woosh,
 		Cell.Id.SMOKE: $Audio/Woosh,
 		Cell.Id.SAND: $Audio/Sand,
+		Cell.Id.FIRE: $Audio/Snap,
 	}
 	for node in $Audio.get_children():
 		audio_times[node] = 0
@@ -40,6 +41,7 @@ func _ready():
 		$Audio/Knock: 3,
 		$Audio/Woosh: 6,
 		$Audio/Sand: 5,
+		$Audio/Snap: 2,
 	}
 
 func _process(_delta):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://textures/cursor_small.png" type="Texture" id=1]
 [ext_resource path="res://invert_bg.gdshader" type="Shader" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://textures/cursor_large.png" type="Texture" id=4]
 [ext_resource path="res://audio/pop.mp3" type="AudioStream" id=5]
 [ext_resource path="res://audio/stone.mp3" type="AudioStream" id=6]
+[ext_resource path="res://audio/snap.mp3" type="AudioStream" id=7]
 [ext_resource path="res://audio/knock.mp3" type="AudioStream" id=8]
 [ext_resource path="res://audio/woosh.mp3" type="AudioStream" id=9]
 [ext_resource path="res://audio/sand.mp3" type="AudioStream" id=10]
@@ -49,3 +50,8 @@ pitch_scale = 0.51
 
 [node name="Sand" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource( 10 )
+
+[node name="Snap" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 7 )
+volume_db = -10.0
+pitch_scale = 2.0
